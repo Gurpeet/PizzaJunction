@@ -4,6 +4,6 @@ export interface Address {
     Street: string;
     Appartment: string;
     City: string;
-    State: number;
+    StateId: number;
     Zip: string;
 }

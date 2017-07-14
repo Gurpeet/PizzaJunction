@@ -16,6 +16,7 @@ export class DeliveryAddress implements OnInit {
 
     ngOnInit() {
         this.states = this.route.snapshot.data['states'].GetStates;
+        console.log(this.states);
     }
 
     getDeliveryMinTime = function (): Date {
@@ -37,7 +38,7 @@ export class DeliveryAddress implements OnInit {
         Street: '',
         Appartment: '',
         City: '',
-        State: 0,
+        StateId: 1,     // setting default value to be BC- British Columbia
         Zip: ''
     };
     private minMoment: Date = this.getDeliveryMinTime();

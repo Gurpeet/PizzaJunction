@@ -4,29 +4,13 @@
     "connector": "memory"
   },
   "sqlserverdb": {
-    "host": ".",
+    "host": ".\\SQL2014DEV",
     "port": 1433,
-    "url": "mssql://sa:Harman3005@./PizzaJunctionOrders",
+    "url": "mssql://sa:sa123456@.\\SQL2014DEV/PizzaJunctionOrders",
     "database": "PizzaJunctionOrders",
-    "password": "Harman3005",
+    "password": "sa123456",
     "name": "sqlserverdb",
     "connector": "mssql",
     "user": "sa"
-  },
-  "Email": {
-    "name": "Email",
-    "connector": "mail",
-    "transports": [
-      {
-        "type": "SMTP",
-        "host": "smtp.gmail.com",
-        "secure": true,
-        "port": 465,
-        "auth": {
-          "user": "gopisivia@gmail.com",
-          "pass": "August@2016"
-        }
-      }
-    ]
   }
 }

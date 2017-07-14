@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { Address } from './../shared/models/address.model';
 import { StorageService } from './../shared/services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: './delivery-address.component.html'
+    templateUrl: './delivery-address.component.html',
+    styles: [`
+        em { float: right; color: #E05C65; padding-left: 10px; }
+    `]
 })
 export class DeliveryAddress {
-    constructor(private storageService: StorageService) { }
+    constructor(private storageService: StorageService, private router: Router) { }
 
     getDeliveryMinTime = function (): Date {
         var minTime = new Date();
@@ -34,7 +38,6 @@ export class DeliveryAddress {
     private maxMoment: Date = this.getDeliveryMaxTime();
     searchLocation = function (formAddress: Address) {
         this.storageService.write("deliveryAddress", formAddress);
-        console.log(this.storageService.read("deliveryAddress"));
+        this.router.navigate(['menu']);
     };
-
 }

@@ -6,6 +6,7 @@ import { ContactUsService } from './../shared/services/contact-us.service';
     templateUrl: './contact-us.component.html',
     styles: [`
         agm-map { height: 300px; }
+        em { float: right; color: #E05C65; padding-left: 10px; }
     `]
 })
 export class ContactUs implements OnInit {

@@ -7,7 +7,7 @@ module.exports = function (Address) {
         var sql = "EXEC [dbo].[AddAddress] @street = '" + address.Street +
             "', @appartment = '" + address.Appartment +
             "', @city = '" + address.City +
-            "', @stateId = '" + address.StateId + 
+            "', @stateId = '" + address.StateId +
             "', @zip = '" + address.Zip + "'";
 
         ds.connector.query(sql, [], function (err, items) {
@@ -39,6 +39,23 @@ module.exports = function (Address) {
     Address.remoteMethod('get', {
         http: { path: '/get', verb: 'post' },
         returns: { arg: 'Result', type: 'string' }
+    });
+
+    Address.getStates = function (cb) {
+        var ds = Address.dataSource;
+        var sql = "EXEC [dbo].[GetStates]";  //Executes sproc
+
+        ds.connector.query(sql, [], function (err, items) {
+            if (err) {
+                console.error(err);     //handle error
+            }
+            cb(err, items);
+        });
+    };
+
+    Address.remoteMethod('getStates', {
+        http: { path: '/getStates', verb: 'get' },
+        returns: { arg: 'GetStates', type: 'string' }
     });
 
     //Hides all unnecessary endpoints

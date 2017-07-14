@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Address } from './../shared/models/address.model';
 import { StorageService } from './../shared/services/storage.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
     templateUrl: './delivery-address.component.html',
@@ -9,8 +10,13 @@ import { Router } from '@angular/router';
         em { float: right; color: #E05C65; padding-left: 10px; }
     `]
 })
-export class DeliveryAddress {
-    constructor(private storageService: StorageService, private router: Router) { }
+export class DeliveryAddress implements OnInit {
+    private states: Address[];
+    constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) { }
+
+    ngOnInit() {
+        this.states = this.route.snapshot.data['states'].GetStates;
+    }
 
     getDeliveryMinTime = function (): Date {
         var minTime = new Date();

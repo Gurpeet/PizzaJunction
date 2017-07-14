@@ -59,7 +59,10 @@
                             <span>* </span> State:
                         </label>
                         <div class="col-sm-4">
-                            <select name="state" id="state" class="form-control" [(ngModel)]="address.StateId" required></select>
+                            <select name="state" id="state" class="form-control" [(ngModel)]="address.StateId" required>
+                                <option *ngFor="let state of states" value="">Select</option>
+                                <option *ngFor="let state of states" value={{states.StateId}}>{{state.StateName}}-{{state.StateCode}}</option>
+                            </select>
                         </div>
                         <div class="col-sm-1">
                             <em *ngIf="deliveryForm.controls.state?.invalid && (deliveryForm.controls.state?.touched || mouseoverLogin)">Required</em>

@@ -11,12 +11,25 @@ import { Router, ActivatedRoute } from '@angular/router';
     `]
 })
 export class DeliveryAddress implements OnInit {
-    private states: Address[];
+    private states: any[];
+    private address: Address; 
     constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.states = this.route.snapshot.data['states'].GetStates;
-        console.log(this.states);
+        this.address = this.storageService.read("deliveryAddress");
+        if (!this.address) {
+            this.address = {
+                AddressId: 0,
+                DeliveryTime: '',
+                Street: '',
+                Appartment: '',
+                City: '',
+                StateId: 1,     // setting default value to be BC- British Columbia
+                Zip: ''
+            };
+        }
+        console.log(this.address);
     }
 
     getDeliveryMinTime = function (): Date {
@@ -32,15 +45,7 @@ export class DeliveryAddress implements OnInit {
         return maxTime;
     };
 
-    address: Address = {
-        AddressId: 0,
-        DeliveryTime: '',
-        Street: '',
-        Appartment: '',
-        City: '',
-        StateId: 1,     // setting default value to be BC- British Columbia
-        Zip: ''
-    };
+
     private minMoment: Date = this.getDeliveryMinTime();
     private maxMoment: Date = this.getDeliveryMaxTime();
     searchLocation = function (formAddress: Address) {

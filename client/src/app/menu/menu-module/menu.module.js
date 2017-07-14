@@ -17,6 +17,7 @@ var checkout_component_1 = require("./../checkout/checkout.component");
 var storage_service_1 = require("./../../shared/services/storage.service");
 var global_1 = require("./../../shared/components/globals/global");
 var order_confirmation_component_1 = require("./../../menu/order-confirmation/order-confirmation.component");
+var menu_delivery_address_component_1 = require("./../menu-delivery-address/menu-delivery-address.component");
 var MenuModule = (function () {
     function MenuModule() {
     }
@@ -33,7 +34,8 @@ MenuModule = __decorate([
             menuitems_component_1.MenuItemsComponent,
             ordersummary_component_1.OrderSummaryComponent,
             checkout_component_1.CheckoutComponent,
-            order_confirmation_component_1.OrderConfirmation
+            order_confirmation_component_1.OrderConfirmation,
+            menu_delivery_address_component_1.MenuDeliveryAddressComponent
         ],
         providers: [
             storage_service_1.StorageService,

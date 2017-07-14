@@ -9,6 +9,7 @@ import { CheckoutComponent } from './../checkout/checkout.component';
 import { StorageService } from './../../shared/services/storage.service';
 import { Globals } from './../../shared/components/globals/global';
 import { OrderConfirmation } from './../../menu/order-confirmation/order-confirmation.component';
+import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-delivery-address.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { OrderConfirmation } from './../../menu/order-confirmation/order-confirm
         MenuItemsComponent,
         OrderSummaryComponent,
         CheckoutComponent,
-        OrderConfirmation
+        OrderConfirmation,
+        MenuDeliveryAddressComponent
     ],
     providers: [
         StorageService,

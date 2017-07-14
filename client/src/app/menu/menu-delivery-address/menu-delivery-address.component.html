@@ -1,0 +1,21 @@
+<h3 class="side-heading">
+    Order Settings
+    <span *ngIf="!address" id="divAddAddress" class="desc pull-right" (click)="addAddress()" title="Add Address">
+        <i class="fa fa-plus-circle"></i>
+    </span>
+</h3>
+
+<div class="list-group">
+    <div class="list-group-item">
+        Delivery Address: <a [routerLink]="['/delivery-address']">Change</a>
+    </div>
+    <div class="list-group-item">
+        <div class="filter-group">
+            <label class="checkbox">{{address.Street}}</label>
+            <label class="checkbox">{{address.Appartment}}</label>
+            <label class="checkbox">{{address.City}}, {{address.State}}</label>
+            <label class="checkbox">{{address.Zip}}</label>
+            <!-- {{address.DeliveryTime | date: 'hh:mm a'}} -->
+        </div>
+    </div>
+</div>

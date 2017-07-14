@@ -4,11 +4,11 @@
     "connector": "memory"
   },
   "sqlserverdb": {
-    "host": ".\\SQL2014DEV",
+    "host": ".",
     "port": 1433,
-    "url": "mssql://sa:sa123456@.\\SQL2014DEV/PizzaJunctionOrders",
+    "url": "mssql://sa:Harman3005@./PizzaJunctionOrders",
     "database": "PizzaJunctionOrders",
-    "password": "sa123456",
+    "password": "Harman3005",
     "name": "sqlserverdb",
     "connector": "mssql",
     "user": "sa"

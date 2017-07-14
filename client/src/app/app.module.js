@@ -11,6 +11,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 // Components
 var app_component_1 = require("./app.component");
 var header_component_1 = require("./shared/components/header/header.component");
@@ -38,6 +39,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             ng_pick_datetime_1.DateTimePickerModule,
+            ngx_bootstrap_1.CarouselModule.forRoot(),
             router_1.RouterModule.forRoot(routes_config_1.RouteConfig),
         ],
         declarations: [

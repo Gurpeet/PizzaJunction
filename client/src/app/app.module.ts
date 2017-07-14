@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-bootstrap';
 
 // Components
 import { AppComponent }  from './app.component';
@@ -28,6 +29,7 @@ import { RouteConfig } from './routes/routes.config';
     FormsModule,
     HttpModule,
     DateTimePickerModule,
+    CarouselModule.forRoot(),
     RouterModule.forRoot(RouteConfig),
   ],
   declarations: [

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Address } from './../shared/models/address.model';
+import { StorageService } from './../shared/services/storage.service';
 
 @Component({
     templateUrl: './delivery-address.component.html'
 })
 export class DeliveryAddress {
+    constructor(private storageService: StorageService) { }
 
     getDeliveryMinTime = function (): Date {
         var minTime = new Date();
@@ -29,9 +31,10 @@ export class DeliveryAddress {
         Zip: ''
     };
     private minMoment: Date = this.getDeliveryMinTime();
-    private maxMoment: Date = this. getDeliveryMaxTime();
+    private maxMoment: Date = this.getDeliveryMaxTime();
     searchLocation = function (formAddress: Address) {
-        console.log(formAddress);
+        this.storageService.write("deliveryAddress", formAddress);
+        console.log(this.storageService.read("deliveryAddress"));
     };
 
 }

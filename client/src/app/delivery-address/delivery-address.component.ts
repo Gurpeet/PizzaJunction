@@ -12,16 +12,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DeliveryAddress implements OnInit {
     private states: any[];
-    private address: Address; 
+    private address: Address;
     constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.states = this.route.snapshot.data['states'].GetStates;
-        this.address = this.storageService.read("deliveryAddress");
+        this.address = <Address>this.storageService.read("deliveryAddress");
         if (!this.address) {
             this.address = {
                 AddressId: 0,
-                DeliveryTime: '',
+                DeliveryTime: null,
                 Street: '',
                 Appartment: '',
                 City: '',

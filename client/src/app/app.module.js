@@ -30,7 +30,6 @@ AppModule = tslib_1.__decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            //HttpModule,
             http_1.HttpClientModule,
             forms_1.FormsModule,
             ngx_bootstrap_1.CarouselModule.forRoot(),

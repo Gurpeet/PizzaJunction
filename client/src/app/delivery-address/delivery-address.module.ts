@@ -6,6 +6,7 @@ import { DeliveryAddressResolver } from './delivery-address.resolver';
 import { AddressService } from './../shared/services/address.service';
 import { FormsModule } from '@angular/forms';
 import { DateTimePickerModule } from 'ng-pick-datetime';
+import { MapService } from './../shared/services/map.service';
 
 const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: {states: DeliveryAddressResolver } }];
 
@@ -21,7 +22,8 @@ const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: 
     ],
     providers: [
         AddressService,
-        DeliveryAddressResolver
+        DeliveryAddressResolver,
+        MapService
     ]
 })
 export class DeliveryAddressModule { }

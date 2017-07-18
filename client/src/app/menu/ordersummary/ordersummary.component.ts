@@ -21,7 +21,7 @@ export class OrderSummaryComponent implements OnInit {
         this.deliveryFee = 0;
     };
 
-    clearCart = function () {        
+    clearCart = function () {
         this.storageService.removeItem('cartItems');
         this.cartDetails = {};
         this.gstCharges = 0;

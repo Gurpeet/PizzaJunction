@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Address } from './../../shared/models/address.model';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';

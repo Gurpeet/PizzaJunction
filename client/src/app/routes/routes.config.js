@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var home_component_1 = require("./../home/home.component");
 var error404_component_1 = require("./../error404/error404.component");
-//import { DeliveryAddress } from './../delivery-address/delivery-address.component';
 exports.RouteConfig = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'menu', loadChildren: '/app/menu/menu-module/menu.module#MenuModule' },

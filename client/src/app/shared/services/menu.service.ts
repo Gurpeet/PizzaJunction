@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 // import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from './../../shared/models/menuitem';
@@ -12,7 +14,7 @@ import { apiPath } from './../components/globals/global';
 
 @Injectable()
 export class MenuService {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         // to get id from route/url
         // private route: ActivatedRoute
         // this.route.snapshot.params['id'];
@@ -21,9 +23,6 @@ export class MenuService {
 
     getMenuItems(): Observable<MenuItem[]> {
         return this.http.get(apiPath + 'MenuItems/getMenuItems')
-            .map((res: Response) => {
-                return res.json();
-            })
             .catch(this.errorMethod);
     }
 

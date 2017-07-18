@@ -4,11 +4,13 @@ var nodemailer = require('nodemailer');
 
 module.exports = function (Contactus) {
     Contactus.add = function (contactus, cb) {      // {"Name": "sdf", "Email": "email", "Subject": "subject", "Message": "message"}
+        console.log(contactus);
         var ds = Contactus.dataSource;
         var sql = "EXEC [dbo].[AddContactUs] @Name = '" + contactus.Name +
             "', @Email = '" + contactus.Email +
             "', @Subject = '" + contactus.Subject +
             "', @Message = '" + contactus.Message + "'";
+        console.log(sql);
 
         let transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -31,7 +33,7 @@ module.exports = function (Contactus) {
         }
 
         transporter.sendMail(HelperOptions, (err, mail) => {
-            if(err){
+            if (err) {
                 console.log(err);
                 cb(err, sql);
                 return;

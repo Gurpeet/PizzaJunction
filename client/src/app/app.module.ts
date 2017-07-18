@@ -1,12 +1,12 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Components
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +16,7 @@ import { MenuItemsResolver } from './menu/menuitems-resolver/menuItems-resolver.
 // Services
 import { MenuService } from './shared/services/menu.service';
 import { StorageService } from './shared/services/storage.service';
-
+import { JWTService } from './shared/services/jwt.service';
 // Models
 
 // Routing
@@ -25,8 +25,9 @@ import { RouteConfig } from './routes/routes.config';
 @NgModule({
   imports: [
     BrowserModule,
+    //HttpModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule,
     CarouselModule.forRoot(),
     RouterModule.forRoot(RouteConfig),
   ],
@@ -36,13 +37,18 @@ import { RouteConfig } from './routes/routes.config';
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent
-    
+
   ],
   providers: [
     MenuService,
     MenuItemsResolver,
-    StorageService
+    StorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTService,
+      multi: true
+    }
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

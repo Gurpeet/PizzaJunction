@@ -19,4 +19,5 @@ export class MenuDeliveryAddressComponent implements OnInit {
         this.address = <Address>this.storageService.read('deliveryAddress');
         console.log(this.address);
     }
+
 }

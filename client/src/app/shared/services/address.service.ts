@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Address } from './../../shared/models/address.model';
 
@@ -11,18 +12,15 @@ import { apiPath } from './../components/globals/global';
 
 @Injectable()
 export class AddressService {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         // to get id from route/url
         // private route: ActivatedRoute
         // this.route.snapshot.params['id'];
         // [routerLink]="['/path', param]"
     }
 
-    getStates(): Observable<Address[]> {
+    getStates(): Observable<Object> {
         return this.http.get(apiPath + 'Addresses/getStates')
-            .map((res: Response) => {
-                return res.json();
-            })
             .catch(this.errorMethod);
     }
 

@@ -12,9 +12,9 @@
                             <span>* </span> Delivery Time:
                         </label>
                         <div class="col-sm-3">
-                            <input class="picker-input form-control" [ngModel]="address.DeliveryTime | date: 'hh:mm a'" [(dateTimePicker)]="address.DeliveryTime" [pickerType]="'time'"
-                                readonly id="deliveryTime" name="deliveryTime" [minMoment]="minMoment" [maxMoment]="maxMoment"
-                                required>
+                            <input class="picker-input form-control" ([ngModel])="address.DeliveryTime" [value]="address.DeliveryTime | date" dateTimePicker
+                                [pickerType]="'time'" [mode]='"dropdown"' readonly id="deliveryTime" name="deliveryTime" [minMoment]="minMoment"
+                                [maxMoment]="maxMoment" required>
                         </div>
                         <div class="col-sm-7">
                             <em *ngIf=" deliveryForm.controls.deliveryTime?.invalid && (deliveryForm.controls.deliveryTime.touched || mouseoverLogin)">Required</em>

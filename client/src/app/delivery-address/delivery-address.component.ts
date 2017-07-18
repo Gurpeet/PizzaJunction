@@ -29,7 +29,6 @@ export class DeliveryAddress implements OnInit {
                 Zip: ''
             };
         }
-        console.log(this.address);
     }
 
     getDeliveryMinTime = function (): Date {
@@ -44,7 +43,6 @@ export class DeliveryAddress implements OnInit {
         maxTime.setMinutes(16);
         return maxTime;
     };
-
 
     private minMoment: Date = this.getDeliveryMinTime();
     private maxMoment: Date = this.getDeliveryMaxTime();

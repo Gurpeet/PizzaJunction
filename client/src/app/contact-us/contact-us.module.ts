@@ -12,10 +12,10 @@ const contactUsRoutes: Routes = [{ path: '', component: ContactUs }];
     imports: [
         FormsModule,
         CommonModule,
-        RouterModule.forChild(contactUsRoutes),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
-        })
+        }),
+        RouterModule.forChild(contactUsRoutes)
     ],
     declarations: [
         ContactUs

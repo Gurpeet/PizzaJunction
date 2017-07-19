@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
+
 // Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -28,6 +30,9 @@ import { RouteConfig } from './routes/routes.config';
     FormsModule,
     CarouselModule.forRoot(),
     RouterModule.forRoot(RouteConfig),
+    AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
+    })
   ],
   declarations: [
     AppComponent,

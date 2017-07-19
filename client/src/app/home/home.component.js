@@ -5,16 +5,18 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("./../shared/services/storage.service");
 var ngx_bootstrap_1 = require("ngx-bootstrap");
+var global_1 = require("./../shared/components/globals/global");
 var HomeComponent = (function () {
     function HomeComponent(router, storageService) {
         this.router = router;
         this.storageService = storageService;
-        this.goToMenu = function () {
+        this.order_Type = global_1.orderType;
+        this.goToMenu = function (orderTypeId) {
             if (this.storageService.read('deliveryAddress')) {
                 this.router.navigate(['menu']);
             }
             else {
-                this.router.navigate(['delivery-address']);
+                this.router.navigate(['delivery-address', orderTypeId]);
             }
         };
     }

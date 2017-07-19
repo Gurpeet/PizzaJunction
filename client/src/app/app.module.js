@@ -7,6 +7,7 @@ var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var ngx_bootstrap_1 = require("ngx-bootstrap");
 var http_1 = require("@angular/common/http");
+var core_2 = require("@agm/core");
 // Components
 var app_component_1 = require("./app.component");
 var header_component_1 = require("./shared/components/header/header.component");
@@ -34,6 +35,9 @@ AppModule = tslib_1.__decorate([
             forms_1.FormsModule,
             ngx_bootstrap_1.CarouselModule.forRoot(),
             router_1.RouterModule.forRoot(routes_config_1.RouteConfig),
+            core_2.AgmCoreModule.forRoot({
+                apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
+            })
         ],
         declarations: [
             app_component_1.AppComponent,

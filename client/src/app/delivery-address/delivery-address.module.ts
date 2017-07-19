@@ -7,7 +7,6 @@ import { AddressService } from './../shared/services/address.service';
 import { FormsModule } from '@angular/forms';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { MapService } from './../shared/services/map.service';
-import { AgmCoreModule } from '@agm/core';
 
 const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: {states: DeliveryAddressResolver } }];
 
@@ -16,9 +15,6 @@ const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: 
         CommonModule,
         FormsModule,
         DateTimePickerModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
-        }),
         RouterModule.forChild(addressRoutes)
     ],
     declarations: [

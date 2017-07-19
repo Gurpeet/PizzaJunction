@@ -1,23 +1,29 @@
 <h3 class="side-heading">
     Order Settings
     <span *ngIf="!address" id="divAddAddress" class="desc pull-right" title="Add Address">
-        <i class="fa fa-plus-circle" [routerLink]="['/delivery-address']"></i>
+        <i class="fa fa-plus-circle" [routerLink]="['/delivery-address', orderTypeId]"></i>
     </span>
 </h3>
 
 <div class="list-group">
     <span *ngIf="address">
         <div class="list-group-item" >
-            Delivery Address: <a [routerLink]="['/delivery-address']">Change</a>
+            <span *ngIf="(address.OrderType == order_Type.Delivery); else divPickupType">Delivery Address</span> 
+            <ng-template #divPickupType>Pick up</ng-template>: 
+            <a [routerLink]="['/delivery-address', orderTypeId]">Change</a>
         </div>
         <div class="list-group-item">
-            <div class="filter-group">
+            <div class="filter-group" *ngIf="(address.OrderType == order_Type.Delivery); else divPickup">
                 <label class="checkbox">{{address.Street}}</label>
                 <label class="checkbox">{{address.Appartment}}</label>
                 <label class="checkbox">{{address.City}}, {{address.State}}</label>
                 <label class="checkbox">{{address.Zip}}</label>
                 <!-- {{address.DeliveryTime | date: 'hh:mm a'}} -->
             </div>
+            <ng-template class="filter-group" #divPickup>
+                <label class="checkbox">{{address.Name}}</label>
+                <label class="checkbox">{{address.Phone}}</label>
+            </ng-template>
         </div>
     </span>
 </div>

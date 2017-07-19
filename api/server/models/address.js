@@ -49,7 +49,7 @@ module.exports = function (Address) {
             if (err) {
                 console.error(err);     //handle error
             }
-            cb(err, items);
+            cb(null, items);
         });
     };
 

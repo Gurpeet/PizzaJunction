@@ -4,42 +4,48 @@ var nodemailer = require('nodemailer');
 
 module.exports = function (Contactus) {
     Contactus.add = function (contactus, cb) {      // {"Name": "sdf", "Email": "email", "Subject": "subject", "Message": "message"}
-        console.log(contactus);
         var ds = Contactus.dataSource;
         var sql = "EXEC [dbo].[AddContactUs] @Name = '" + contactus.Name +
             "', @Email = '" + contactus.Email +
             "', @Subject = '" + contactus.Subject +
             "', @Message = '" + contactus.Message + "'";
-        console.log(sql);
 
-        let transporter = nodemailer.createTransport({
-            service: 'gmail',
-            secure: false,
-            port: 25,
-            auth: {
-                user: '<Email>',
-                pass: '<Password>'
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
-
-        let HelperOptions = {
-            from: contactus.Email,
-            to: 'gopisivia@gmail.com',
-            subject: contactus.Subject,
-            text: contactus.Message
-        }
-
-        transporter.sendMail(HelperOptions, (err, mail) => {
+        ds.connector.query(sql, [], function (err, items) {
             if (err) {
-                console.log(err);
-                cb(err, sql);
-                return;
+                console.error(err);     //handle error
             }
-            console.log('mail sent');
-            cb(null, sql);
+
+            //Email once data is saved in database
+            //Need to provide actual configuration
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                secure: false,
+                port: 25,
+                auth: {
+                    user: '<Email>',
+                    pass: '<Password>'
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            });
+
+            let HelperOptions = {
+                from: contactus.Email,
+                to: 'gopisivia@gmail.com',      //Provide email where to send mail
+                subject: contactus.Subject,
+                text: contactus.Message
+            }
+
+            transporter.sendMail(HelperOptions, (err, mail) => {
+                if (err) {
+                    console.log(err);
+                    cb(err, sql);
+                    return;
+                }
+                console.log('mail sent');
+                cb(null, sql);
+            });
         });
     };
 

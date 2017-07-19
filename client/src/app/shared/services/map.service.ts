@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MapsAPILoader } from '@agm/core';
+
 import { GeoLocation, Address } from './../models/address.model';
 
 declare var google: any;
@@ -12,8 +14,10 @@ export interface IMap {
 export class MapService implements IMap {
     geocoder: any;
 
-    constructor() {
-        this.geocoder = new google.maps.Geocoder();
+    constructor(private mapsApiLoader: MapsAPILoader) {
+        this.mapsApiLoader.load().then(() => {
+            this.geocoder = new google.maps.Geocoder();
+        });
     }
 
     public searchLocation(location: Address): Promise<GeoLocation> {

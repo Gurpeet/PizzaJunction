@@ -8,6 +8,7 @@ exports.pizzaJunctionLng = -122.325902;
 exports.defaultStateId = 1;
 exports.defaultState = 'British Columbia';
 exports.defaultCountry = 'Canada';
+exports.orderType = { 'Delivery': 1, 'Pickup': 2 };
 var GSTAmount = 5;
 var Globals = (function () {
     function Globals() {

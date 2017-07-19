@@ -35,8 +35,8 @@ export class DeliveryAddress implements OnInit {
                 City: '',
                 StateId: defaultStateId,     // setting default value to be BC- British Columbia
                 Zip: '',
-                Country: defaultState,
-                State: defaultCountry
+                Country: defaultCountry,
+                State: defaultState
             };
         }
     }

@@ -9,7 +9,7 @@ export const pizzaJunctionLng = -122.325902;
 export const defaultStateId = 1;
 export const defaultState = 'British Columbia';
 export const defaultCountry = 'Canada';
-
+export const orderType = { 'Delivery': 1, 'Pickup': 2 };
 
 
 const GSTAmount = 5;

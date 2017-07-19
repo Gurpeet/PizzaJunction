@@ -15,12 +15,7 @@ export class ContactUsService {
     }
 
     add(contactUsModel: ContactUsModel) {
-        let bodyString = JSON.stringify(contactUsModel);
-        // let headers = new Headers({ 'Content-Type': 'application/json' });
-        // TODO: create a http wrapper to add anything other than body    
-        // let options = new RequestOptions({ headers: headers }); // Create a request option
-        // console.log(apiPath + 'ContactUs/add');
-        return this.http.post(apiPath + 'ContactUs/add', bodyString)
+        return this.http.post(apiPath + 'ContactUs/add', {contactus: contactUsModel})
             .catch(this.errorMethod).subscribe();
     }
 

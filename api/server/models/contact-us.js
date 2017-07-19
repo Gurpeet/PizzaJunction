@@ -49,7 +49,6 @@ module.exports = function (Contactus) {
         returns: { arg: 'Result', type: 'string' }
     });
 
-
     //Hides all unnecessary endpoints
     Contactus.disableRemoteMethodByName('create');				// Removes (POST) 
     Contactus.disableRemoteMethodByName('patchOrCreate');				// Removes (PATCH) 

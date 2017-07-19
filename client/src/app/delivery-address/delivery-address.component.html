@@ -8,19 +8,23 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form" #deliveryForm="ngForm" method="POST" (ngSubmit)="searchLocation(address)" novalidate>
                     <div class="form-group">
-                        <div for="deliveryTime" class="col-sm-2 control-label"></div>
-                        <label for="street" class="col-sm-2 control-label">Delivery</label>
-                        <div class="col-sm-1 radio">
-                            <input type="radio" [(ngModel)]="address.OrderType" name="radOrderType" value="1"> 
-                        </div>
-                        <label for="street" class="col-sm-2 control-label">Pickup</label>
-                        <div class="col-sm-1 radio">
-                            <input type="radio" [(ngModel)]="address.OrderType" name="radOrderType" value="2"> 
-                        </div>
-                        <div class="col-sm-3">
-                            <em *ngIf=" deliveryForm.controls.deliveryTime?.invalid && (deliveryForm.controls.deliveryTime.touched || mouseoverLogin)">Required</em>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <div class="btn-group btn-group-horizontal" data-toggle="buttons">
+                                <label class="btn ">
+                                    <input type="radio" name='radOrderType' [(ngModel)]="address.OrderType" value="1">
+                                    <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                                    <span>  Delivery</span>
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" [(ngModel)]="address.OrderType" name="radOrderType" value="2">
+                                    <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                                    <span> Pickup</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="deliveryTime" class="col-sm-2 control-label">
                             <span>* </span> <span *ngIf="(address.OrderType == order_Type.Delivery); else pickUpTime">Delivery</span> 
@@ -39,91 +43,91 @@
                         <div class="form-group">
                             <label for="street" class="col-sm-2 control-label">
                             <span>* </span> Street Address:
-                            </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="street" id="street" placeholder="Street Address" [(ngModel)]="address.Street"
-                                    required>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.street?.invalid  && (deliveryForm.controls.street.touched || mouseoverLogin)">Required</em>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="appartment" class="col-sm-2 control-label">
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="street" id="street" placeholder="Street Address" [(ngModel)]="address.Street"
+                            required>
+                    </div>
+                    <div class="col-sm-1">
+                        <em *ngIf="deliveryForm.controls.street?.invalid  && (deliveryForm.controls.street.touched || mouseoverLogin)">Required</em>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="appartment" class="col-sm-2 control-label">
                                 Suite/Apt #
                             </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="appartment" id="appartment" placeholder="Suite/Appartment" [(ngModel)]="address.Appartment">
-                            </div>
-                            <div class="col-sm-1">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="city" class="col-sm-2 control-label">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="appartment" id="appartment" placeholder="Suite/Appartment" [(ngModel)]="address.Appartment">
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="city" class="col-sm-2 control-label">
                                 <span>* </span> City:
                             </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="city" id="city" placeholder="City" [(ngModel)]="address.City" required>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.city?.invalid && (deliveryForm.controls.city?.touched || mouseoverLogin)">Required</em>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="col-sm-2 control-label">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="city" id="city" placeholder="City" [(ngModel)]="address.City" required>
+                </div>
+                <div class="col-sm-1">
+                    <em *ngIf="deliveryForm.controls.city?.invalid && (deliveryForm.controls.city?.touched || mouseoverLogin)">Required</em>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message" class="col-sm-2 control-label">
                                 <span>* </span> State:
                             </label>
-                            <div class="col-sm-4">
-                                <select name="state" id="state" class="form-control" [(ngModel)]="address.StateId" required>
+                <div class="col-sm-4">
+                    <select name="state" id="state" class="form-control" [(ngModel)]="address.StateId" required>
                                     <option *ngFor="let state of states" value="">Select</option>
                                     <option *ngFor="let state of states" value={{state.StateID}}>{{state.StateName}}-{{state.StateCode}}</option>
                                 </select>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.state?.invalid && (deliveryForm.controls.state?.touched || mouseoverLogin)">Required</em>
-                            </div>
-                            <label for="message" class="col-sm-2 control-label">
+                </div>
+                <div class="col-sm-1">
+                    <em *ngIf="deliveryForm.controls.state?.invalid && (deliveryForm.controls.state?.touched || mouseoverLogin)">Required</em>
+                </div>
+                <label for="message" class="col-sm-2 control-label">
                                 <span>* </span> Zip Code:
                             </label>
-                            <div class="col-sm-2">
-                                <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip Code" [(ngModel)]="address.Zip" required>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.zip?.invalid && (deliveryForm.controls.zip?.touched || mouseoverLogin)">Required</em>
-                            </div>
-                        </div>
-                    </span>
-                    <ng-template #pickUpForm>
-                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label"><span>* </span> Name: </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Name" [(ngModel)]="address.Name" required>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.name?.invalid  && (deliveryForm.controls.name.touched || mouseoverLogin)">Required</em>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="col-sm-2 control-label">
+                <div class="col-sm-2">
+                    <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip Code" [(ngModel)]="address.Zip" required>
+                </div>
+                <div class="col-sm-1">
+                    <em *ngIf="deliveryForm.controls.zip?.invalid && (deliveryForm.controls.zip?.touched || mouseoverLogin)">Required</em>
+                </div>
+            </div>
+            </span>
+            <ng-template #pickUpForm>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label"><span>* </span> Name: </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" [(ngModel)]="address.Name" required>
+                    </div>
+                    <div class="col-sm-1">
+                        <em *ngIf="deliveryForm.controls.name?.invalid  && (deliveryForm.controls.name.touched || mouseoverLogin)">Required</em>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">
                                     <span>* </span> Phone:
                                     </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" [(ngModel)]="address.Phone" required>
-                            </div>
-                            <div class="col-sm-1">
-                                <em *ngIf="deliveryForm.controls.phone?.invalid  && (deliveryForm.controls.phone.touched || mouseoverLogin)">Required</em>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" [(ngModel)]="address.Phone" required>
+                    </div>
+                    <div class="col-sm-1">
+                        <em *ngIf="deliveryForm.controls.phone?.invalid  && (deliveryForm.controls.phone.touched || mouseoverLogin)">Required</em>
+                    </div>
+                </div>
+            </ng-template>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
                                 <button type="submit" class="btn btn-danger text-uppercase" [disabled]="deliveryForm.invalid">Go Next</button>
                             </span>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>

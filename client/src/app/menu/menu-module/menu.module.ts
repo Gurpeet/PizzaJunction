@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MenuRoutes } from './../menuroutes/menu.routes';
 import { MenuComponent } from './../menu.component';
 import { MenuItemsComponent } from './../menuitems/menuitems.component';
@@ -14,6 +15,7 @@ import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-de
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         RouterModule.forChild(MenuRoutes)
     ],
     declarations: [

@@ -4,6 +4,7 @@ var tslib_1 = require("tslib");
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var menu_routes_1 = require("./../menuroutes/menu.routes");
 var menu_component_1 = require("./../menu.component");
 var menuitems_component_1 = require("./../menuitems/menuitems.component");
@@ -22,6 +23,7 @@ MenuModule = tslib_1.__decorate([
     core_1.NgModule({
         imports: [
             common_1.CommonModule,
+            forms_1.FormsModule,
             router_1.RouterModule.forChild(menu_routes_1.MenuRoutes)
         ],
         declarations: [

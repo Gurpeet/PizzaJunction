@@ -24,6 +24,24 @@ var Globals = (function () {
         return GSTAmount;
     };
     ;
+    Globals.prototype.getDistanceFee = function (distance) {
+        if (distance <= 5) {
+            return 5;
+        }
+        else if (distance < 10) {
+            return 8;
+        }
+        else if (distance < 15) {
+            return 12;
+        }
+        else if (distance <= 30) {
+            return 15;
+        }
+        else {
+            return -1;
+        }
+    };
+    ;
     return Globals;
 }());
 exports.Globals = Globals;

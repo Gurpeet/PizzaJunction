@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './error404/error404.component';
 import { MenuItemsResolver } from './menu/menuitems-resolver/menuItems-resolver.service';
+
 
 // Services
 import { MenuService } from './shared/services/menu.service';
@@ -28,10 +30,11 @@ import { RouteConfig } from './routes/routes.config';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     CarouselModule.forRoot(),
     RouterModule.forRoot(RouteConfig),
     AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
+      apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'
     })
   ],
   declarations: [

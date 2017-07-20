@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
+import { Address } from './../../shared/models/address.model';
 import { Globals } from './../../shared/components/globals/global';
 
 @Component({
@@ -18,7 +19,8 @@ export class OrderSummaryComponent implements OnInit {
 
     ngOnInit() {
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
-        this.deliveryFee = 0;
+        var deliveryAdd = <Address>this.storageService.read('deliveryAddress');
+        this.deliveryFee = deliveryAdd.DeliveryFee;
     };
 
     clearCart = function () {

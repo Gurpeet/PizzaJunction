@@ -18,7 +18,8 @@ var OrderSummaryComponent = (function () {
     }
     OrderSummaryComponent.prototype.ngOnInit = function () {
         this.cartDetails = this.storageService.read('cartItems');
-        this.deliveryFee = 0;
+        var deliveryAdd = this.storageService.read('deliveryAddress');
+        this.deliveryFee = deliveryAdd.DeliveryFee;
     };
     ;
     return OrderSummaryComponent;

@@ -12,7 +12,7 @@ import { orderType } from './../shared/components/globals/global';
     `]
 })
 export class HomeComponent {
-    private order_Type: any = orderType;
+    order_Type: any = orderType;
     constructor(private router: Router, private storageService: StorageService) { }
 
     goToMenu = function (orderTypeId: number) {

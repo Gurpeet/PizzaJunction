@@ -13,7 +13,7 @@ import { orderType } from './../../shared/components/globals/global';
 export class MenuDeliveryAddressComponent implements OnInit {
     private address: Address;
     private orderTypeId: number;
-    private order_Type: any = orderType;
+    order_Type: any = orderType;
     constructor(private storageService: StorageService) {
     }
 

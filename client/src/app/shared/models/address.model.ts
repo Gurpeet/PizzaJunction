@@ -11,10 +11,12 @@ export interface Address {
     Zip?: string;
     Name?: string;
     Phone?: string;
-    OrderType?: number
-}
+    OrderType?: number;
+    Distance?: number;
+    DeliveryFee?: number;
+};
 
 export interface GeoLocation {
     lat: number;
     lng: number;
-}
+};

@@ -14,7 +14,7 @@ export class ContactUs implements OnInit {
     zoom: number = 18;
     lat: number = 49.054765;
     lng: number = -122.325902;
-    private contact: ContactUsModel = {
+    contact: ContactUsModel = {
         Id: 0,
         Name: '',
         Email: '',

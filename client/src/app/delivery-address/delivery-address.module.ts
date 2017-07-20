@@ -7,6 +7,8 @@ import { AddressService } from './../shared/services/address.service';
 import { FormsModule } from '@angular/forms';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { MapService } from './../shared/services/map.service';
+import { Globals } from './../shared/components/globals/global';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: {states: DeliveryAddressResolver } }];
 
@@ -15,6 +17,7 @@ const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: 
         CommonModule,
         FormsModule,
         DateTimePickerModule,
+        ToastModule.forRoot(),
         RouterModule.forChild(addressRoutes)
     ],
     declarations: [
@@ -23,7 +26,8 @@ const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: 
     providers: [
         AddressService,
         DeliveryAddressResolver,
-        MapService
+        MapService,
+        Globals
     ]
 })
 export class DeliveryAddressModule { }

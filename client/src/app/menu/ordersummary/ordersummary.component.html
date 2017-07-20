@@ -53,7 +53,7 @@
                     <!--Get total sum of order including Delivery Fee, GST-->
                 </div>
                 <div class="cart-button button-group">
-                    <button type="button" class="btn btn-cart" [routerLink]="['/menu/checkout']" [disabled]="!(cartDetails?.totalQty)">
+                    <button type="button" class="btn btn-cart" [disabled]="!(cartDetails?.totalQty)" (click)="checkout()">
                         Checkout <i class="fa fa-shopping-cart"></i>
                     </button>
                 </div>

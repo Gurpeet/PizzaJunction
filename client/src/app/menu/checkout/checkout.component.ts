@@ -11,8 +11,8 @@ export class CheckoutComponent implements OnInit {
     private cartDetails: CartItem;
     private deliveryAddress: Address;
     private deliveryFee: number = 0;
-    private address: any = {};
-    private order_Type: any = orderType;
+    address: any = {};
+    order_Type: any = orderType;
     constructor(private storageService: StorageService, private globals: Globals) {
 
     }
@@ -25,10 +25,10 @@ export class CheckoutComponent implements OnInit {
 
     populateDeliveryAddress = function () {
         if (this.address.SameAsDelivery) {
-            //populate from delivery address
+            // populate from delivery address
             this.address = this.deliveryAddress;
         } else {
-            //clear address controls
+            // clear address controls
         }
-    }
+    };
 }

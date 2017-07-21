@@ -10,7 +10,7 @@ export const defaultStateId = 1;
 export const defaultState = 'British Columbia';
 export const defaultCountry = 'Canada';
 export const orderType = { 'Delivery': 1, 'Pickup': 2 };
-
+export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3};
 
 const GSTAmount = 5;
 

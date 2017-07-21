@@ -9,7 +9,7 @@
         <div class="order-summary">
             <div class="caption" *ngIf="(cartDetails && cartDetails.totalQty)">
                 <div class="line-item" *ngFor="let item of globals.generateArray(cartDetails)">
-                    <div class="desc pull-left" *ngIf="item">
+                    <div class="desc pull-left" *ngIf="item"><i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" ></i>
                         {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType == "Inches" ? "\"" : ""}} {{item.item.Description}}
                     </div>
                     <div class="amount pull-left" *ngIf="item">
@@ -40,18 +40,43 @@
                 <div class="tax line-item">
                     <div class="desc pull-left">GST ({{globals.getGSTAmount()}}%)</div>
                     <div class="amount pull-right">
-                        {{ ((globals.getGSTAmount() * cartDetails?.totalPrice / 100) ? (globals.getGSTAmount() * cartDetails?.totalPrice / 100): 0) | currency:'USD': true }}
+                        {{ ((globals.getGSTAmount() * cartDetails?.totalPrice / 100) ? (globals.getGSTAmount() * cartDetails?.totalPrice / 100):
+                        0) | currency:'USD': true }}
                     </div>
                     <!--5% of total sum-->
                 </div>
                 <div class="total line-item">
                     <div class="desc pull-left last">Total</div>
                     <div class="amount pull-right">
-                        {{ ((cartDetails?.totalPrice + deliveryFee + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) ? (cartDetails?.totalPrice + deliveryFee
-                        + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) : 0) | currency:'USD': true }}
+                        {{ ((cartDetails?.totalPrice + deliveryFee + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) ? (cartDetails?.totalPrice
+                        + deliveryFee + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) : 0) | currency:'USD':
+                        true }}
                     </div>
                     <!--Get total sum of order including Delivery Fee, GST-->
                 </div>
+                <!-- <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="btn-group btn-group-vertical" data-toggle="buttons">
+                            <label class="btn active">
+                                <input type="radio" name='radOrderType' [(ngModel)]="deliveryAdd.PaymentMode" value="1">
+                                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                                <span>  Pay Now</span>
+                            </label>
+                            <label class="btn active" *ngIf="(order_Type == order_Types.Delivery);else deliveryPanel">
+                                <input type="radio" [(ngModel)]="deliveryAdd.PaymentMode" name="radOrderType" value="2" >
+                                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                                <span> Pay In Store</span>
+                            </label>
+                            <ng-template #deliveryPanel>
+                                <label class="btn active">
+                                    <input type="radio" [(ngModel)]="deliveryAdd.PaymentMode" name="radOrderType" value="3" >
+                                    <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                                    <span> Cash on Delivery</span>
+                                </label>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="cart-button button-group">
                     <button type="button" class="btn btn-cart" [disabled]="!(cartDetails?.totalQty)" (click)="checkout()">
                         Checkout <i class="fa fa-shopping-cart"></i>

@@ -4,7 +4,7 @@ import { StorageService } from './../shared/services/storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MapService } from './../shared/services/map.service';
 import { pizzaJunctionLat, pizzaJunctionLng, defaultStateId, defaultState, defaultCountry } from './../shared/components/globals/global';
-import { orderType, Globals } from './../shared/components/globals/global';
+import { orderType, paymentMode, Globals } from './../shared/components/globals/global';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
@@ -49,7 +49,8 @@ export class DeliveryAddress implements OnInit, OnDestroy {
                 Phone: '',
                 OrderType: ordTypeId,
                 Distance: 0,
-                DeliveryFee: 0
+                DeliveryFee: 0,
+                PaymentMode: paymentMode.PayNow
             };
         } else {
             this.address.OrderType = ordTypeId;
@@ -121,7 +122,8 @@ export class DeliveryAddress implements OnInit, OnDestroy {
             Phone: this.address.Phone,
             OrderType: this.address.OrderType,
             Distance: 0,
-            DeliveryFee: 0
+            DeliveryFee: 0,
+            PaymentMode: paymentMode.PayNow
         };
     };
 

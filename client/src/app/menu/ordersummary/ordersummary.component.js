@@ -22,7 +22,6 @@ var OrderSummaryComponent = (function () {
         };
         this.checkout = function () {
             // if order_Type is 0 then get delivery address, else proceed to checkout
-            //console.log(this.deliveryAdd.PaymentMode);
             if (this.order_Type !== 0) {
                 this.router.navigate(['/menu/checkout']);
             }
@@ -31,22 +30,7 @@ var OrderSummaryComponent = (function () {
             }
         };
         this.reduceByOne = function (itemId) {
-            // console.log(item);
-            // let cart = Object.assign({}, this.cartDetails);
-            // //delete item from collection
-            // //this.cartDetails.removeItem(item);
-            // //cart.removeItem(item);
-            // //if items qty > 1 reduce quantity by 1 
-            // if(item.qty > 1){
-            //     item.qty -=1;
-            //     item.price -= item.item.ItemPrice;
-            // }
-            // //if item qty = 1, do nothing, item already removed
-            // console.log(item);
-            // console.log(this.cartDetails);
-            //let cartItem = <CartItem>this.storageService.read('cartItems');
             var items = this.cartDetails.items;
-            var storedItem = items[itemId];
             items[itemId].qty--;
             items[itemId].price -= items[itemId].item.ItemPrice;
             this.cartDetails.totalQty--;

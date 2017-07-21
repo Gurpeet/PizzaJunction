@@ -43,7 +43,6 @@ export class OrderSummaryComponent implements OnInit {
 
     checkout = function () {
         // if order_Type is 0 then get delivery address, else proceed to checkout
-        //console.log(this.deliveryAdd.PaymentMode);
         if (this.order_Type !== 0) {
             this.router.navigate(['/menu/checkout']);
         } else {
@@ -51,33 +50,14 @@ export class OrderSummaryComponent implements OnInit {
         }
     };
     reduceByOne = function (itemId: any) {
-        // console.log(item);
-        // let cart = Object.assign({}, this.cartDetails);
-        // //delete item from collection
-        // //this.cartDetails.removeItem(item);
-        // //cart.removeItem(item);
-        // //if items qty > 1 reduce quantity by 1 
-        // if(item.qty > 1){
-        //     item.qty -=1;
-        //     item.price -= item.item.ItemPrice;
-        // }
-        // //if item qty = 1, do nothing, item already removed
-        // console.log(item);
-        // console.log(this.cartDetails);
-
-
-
-        //let cartItem = <CartItem>this.storageService.read('cartItems');
-
         let items = this.cartDetails.items;
-        let storedItem = items[itemId];
         items[itemId].qty--;
         items[itemId].price -= items[itemId].item.ItemPrice;
         this.cartDetails.totalQty--;
         this.cartDetails.totalPrice -= items[itemId].item.ItemPrice;
-        if(items[itemId].qty <= 0){
+        if (items[itemId].qty <= 0) {
             delete this.cartDetails.items[itemId];
-        }        
+        }
         this.storageService.write('cartItems', this.cartDetails);
-    }
+    };
 }

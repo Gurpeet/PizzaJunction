@@ -1,8 +1,8 @@
 <h3 class="side-heading">
     Order Summary
-    <div id="divClearCart" class="desc pull-right pointer" (click)="clearCart()" title="Clear All Items">
+    <span id="divClearCart" class="desc pull-right pointer" *ngIf="(cartDetails && cartDetails.totalQty)" (click)="clearCart()" title="Clear All Items">
         <i class="fa fa-trash"></i>
-    </div>
+    </span>
 </h3>
 <div class="list-group">
     <div class="list-group-item">

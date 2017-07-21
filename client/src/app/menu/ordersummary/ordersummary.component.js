@@ -40,6 +40,13 @@ var OrderSummaryComponent = (function () {
             }
             this.storageService.write('cartItems', this.cartDetails);
         };
+        this.removeItem = function (itemId) {
+            var items = this.cartDetails.items;
+            this.cartDetails.totalPrice -= items[itemId].price;
+            this.cartDetails.totalQty -= items[itemId].qty;
+            delete this.cartDetails.items[itemId];
+            this.storageService.write('cartItems', this.cartDetails);
+        };
     }
     OrderSummaryComponent.prototype.ngOnInit = function () {
         this.cartDetails = this.storageService.read('cartItems');
@@ -60,7 +67,7 @@ OrderSummaryComponent = tslib_1.__decorate([
     core_1.Component({
         selector: 'order-summary',
         templateUrl: './ordersummary.component.html',
-        styles: ["\n        #divClearCart { cursor: pointer; }\n        .pointer { cursor: pointer; }\n    "]
+        styles: ["\n        .pointer { cursor: pointer; }\n    "]
     }),
     tslib_1.__metadata("design:paramtypes", [storage_service_1.StorageService,
         global_1.Globals,

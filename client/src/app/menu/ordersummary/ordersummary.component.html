@@ -1,6 +1,6 @@
 <h3 class="side-heading">
     Order Summary
-    <div id="divClearCart" class="desc pull-right" (click)="clearCart()" title="Clear All Items">
+    <div id="divClearCart" class="desc pull-right pointer" (click)="clearCart()" title="Clear All Items">
         <i class="fa fa-trash"></i>
     </div>
 </h3>
@@ -9,7 +9,9 @@
         <div class="order-summary">
             <div class="caption" *ngIf="(cartDetails && cartDetails.totalQty)">
                 <div class="line-item" *ngFor="let item of globals.generateArray(cartDetails)">
-                    <div class="desc pull-left" *ngIf="item"><i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" ></i>
+                    <div class="desc pull-left" *ngIf="item">
+                        <i class="fa fa-times-circle pointer" aria-hidden="true" (click)="removeItem(item.item.MenuItemId)" title="Remove Item"></i>
+                        <i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" title="Reduce by 1" *ngIf="item.qty > 1" ></i>
                         {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType == "Inches" ? "\"" : ""}} {{item.item.Description}}
                     </div>
                     <div class="amount pull-left" *ngIf="item">

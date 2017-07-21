@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
     selector: 'order-summary',
     templateUrl: './ordersummary.component.html',
     styles: [`
-        #divClearCart { cursor: pointer; }
         .pointer { cursor: pointer; }
     `]
 })
@@ -49,7 +48,7 @@ export class OrderSummaryComponent implements OnInit {
             this.router.navigate(['delivery-address', orderType.Delivery]);
         }
     };
-    reduceByOne = function (itemId: any) {
+    reduceByOne = function (itemId: number) {
         let items = this.cartDetails.items;
         items[itemId].qty--;
         items[itemId].price -= items[itemId].item.ItemPrice;
@@ -60,4 +59,12 @@ export class OrderSummaryComponent implements OnInit {
         }
         this.storageService.write('cartItems', this.cartDetails);
     };
+
+    removeItem = function (itemId: number) {
+        let items = this.cartDetails.items;
+        this.cartDetails.totalPrice -= items[itemId].price;
+        this.cartDetails.totalQty -= items[itemId].qty;
+        delete this.cartDetails.items[itemId];
+        this.storageService.write('cartItems', this.cartDetails);
+    }
 }

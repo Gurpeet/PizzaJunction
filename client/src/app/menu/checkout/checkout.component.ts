@@ -13,7 +13,7 @@ export class CheckoutComponent implements OnInit {
     private deliveryFee: number = 0;
     discount_Percent: number = discountPercent;
     address: any = {};
-    order_Type: any = orderType;
+    order_Type: any;
     constructor(private storageService: StorageService, private globals: Globals) {
 
     }
@@ -24,6 +24,8 @@ export class CheckoutComponent implements OnInit {
         if (this.deliveryAddress) {
             this.deliveryFee = this.deliveryAddress.DeliveryFee;
             this.order_Type = this.deliveryAddress.OrderType;
+        } else {
+            this.order_Type = orderType.Delivery;
         }
     }
 
@@ -33,6 +35,9 @@ export class CheckoutComponent implements OnInit {
             this.address = this.deliveryAddress;
         } else {
             // clear address controls
+            this.address = {
+                SameAsDelivery: this.deliveryAddress.SameAsDelivery
+            };
         }
     };
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Globals, orderType, discountPercent } from './../../shared/components/globals/global';
@@ -8,17 +9,19 @@ import { Address } from './../../shared/models/address.model';
     templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent implements OnInit {
+    private states: any[];
     private cartDetails: CartItem;
     private deliveryAddress: Address;
     private deliveryFee: number = 0;
     discount_Percent: number = discountPercent;
     address: any = {};
     order_Type: any;
-    constructor(private storageService: StorageService, private globals: Globals) {
+    constructor(private storageService: StorageService, private globals: Globals, private route: ActivatedRoute) {
 
     }
 
     ngOnInit() {
+        this.states = this.route.snapshot.data['states'].GetStates;
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
         if (this.deliveryAddress) {

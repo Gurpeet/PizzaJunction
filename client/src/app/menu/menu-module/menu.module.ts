@@ -11,6 +11,8 @@ import { StorageService } from './../../shared/services/storage.service';
 import { Globals } from './../../shared/components/globals/global';
 import { OrderConfirmation } from './../../menu/order-confirmation/order-confirmation.component';
 import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-delivery-address.component';
+import { DeliveryAddressResolver } from './../../delivery-address/delivery-address.resolver';
+import { AddressService } from './../../shared/services/address.service';
 
 @NgModule({
     imports: [
@@ -28,7 +30,9 @@ import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-de
     ],
     providers: [
         StorageService,
-        Globals
+        Globals,
+        AddressService,
+        DeliveryAddressResolver
     ]
 })
 export class MenuModule { }

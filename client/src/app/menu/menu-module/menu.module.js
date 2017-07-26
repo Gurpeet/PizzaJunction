@@ -14,6 +14,8 @@ var storage_service_1 = require("./../../shared/services/storage.service");
 var global_1 = require("./../../shared/components/globals/global");
 var order_confirmation_component_1 = require("./../../menu/order-confirmation/order-confirmation.component");
 var menu_delivery_address_component_1 = require("./../menu-delivery-address/menu-delivery-address.component");
+var delivery_address_resolver_1 = require("./../../delivery-address/delivery-address.resolver");
+var address_service_1 = require("./../../shared/services/address.service");
 var MenuModule = (function () {
     function MenuModule() {
     }
@@ -36,7 +38,9 @@ MenuModule = tslib_1.__decorate([
         ],
         providers: [
             storage_service_1.StorageService,
-            global_1.Globals
+            global_1.Globals,
+            address_service_1.AddressService,
+            delivery_address_resolver_1.DeliveryAddressResolver
         ]
     })
 ], MenuModule);

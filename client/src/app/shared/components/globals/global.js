@@ -10,6 +10,7 @@ exports.defaultState = 'British Columbia';
 exports.defaultCountry = 'Canada';
 exports.orderType = { 'Delivery': 1, 'Pickup': 2 };
 exports.paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
+exports.minOrderAmount = 15;
 var GSTAmount = 5;
 var Globals = (function () {
     function Globals() {

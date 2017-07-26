@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Address } from './../../shared/models/address.model';
-import { Globals, orderType, paymentMode } from './../../shared/components/globals/global';
+import { Globals, orderType, paymentMode, minOrderAmount } from './../../shared/components/globals/global';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +16,7 @@ export class OrderSummaryComponent implements OnInit {
     @Input() cartDetails: CartItem;
     private deliveryFee: number = 0;
     private order_Type: number = 0;
+    private min_Order: number = minOrderAmount;
     deliveryAdd: any;
     order_Types: any = orderType;
     payment_Mode: any = paymentMode;

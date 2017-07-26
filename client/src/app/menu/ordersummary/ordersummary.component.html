@@ -1,6 +1,7 @@
 <h3 class="side-heading">
     Order Summary
-    <span id="divClearCart" class="desc pull-right pointer" *ngIf="(cartDetails && cartDetails.totalQty)" (click)="clearCart()" title="Clear All Items">
+    <span id="divClearCart" class="desc pull-right pointer" *ngIf="(cartDetails && cartDetails.totalQty)" (click)="clearCart()"
+        title="Clear All Items">
         <i class="fa fa-trash"></i>
     </span>
 </h3>
@@ -11,8 +12,9 @@
                 <div class="line-item" *ngFor="let item of globals.generateArray(cartDetails)">
                     <div class="desc pull-left" *ngIf="item">
                         <i class="fa fa-times-circle pointer" aria-hidden="true" (click)="removeItem(item.item.MenuItemId)" title="Remove Item"></i>
-                        <i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" title="Reduce by 1" *ngIf="item.qty > 1" ></i>
-                        {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType == "Inches" ? "\"" : ""}} {{item.item.Description}}
+                        <i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" title="Reduce by 1"
+                            *ngIf="item.qty > 1"></i> {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType
+                        == "Inches" ? "\"" : ""}} {{item.item.Description}}
                     </div>
                     <div class="amount pull-left" *ngIf="item">
                         {{item.price | currency: 'USD': true}}
@@ -80,7 +82,8 @@
                     </div>
                 </div> -->
                 <div class="cart-button button-group">
-                    <button type="button" class="btn btn-cart" [disabled]="!(cartDetails?.totalQty)" (click)="checkout()">
+                    <button type="button" class="btn btn-cart" [disabled]="!(cartDetails?.totalQty) || cartDetails?.totalPrice < min_Order" (click)="checkout()" 
+                        title="Checkout">
                         Checkout <i class="fa fa-shopping-cart"></i>
                     </button>
                 </div>

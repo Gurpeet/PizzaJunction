@@ -12,6 +12,7 @@ var OrderSummaryComponent = (function () {
         this.router = router;
         this.deliveryFee = 0;
         this.order_Type = 0;
+        this.min_Order = global_1.minOrderAmount;
         this.order_Types = global_1.orderType;
         this.payment_Mode = global_1.paymentMode;
         this.clearCart = function () {

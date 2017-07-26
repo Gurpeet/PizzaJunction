@@ -587,7 +587,12 @@ hr {
 .line-item .last {
     padding-bottom: 10px;
 }
-.sub-total .desc, .delivery .desc, .tax .desc, .total .desc {
+.sub-total .desc,
+.delivery .desc,
+.tax .desc,
+.discount .desc,
+.total .desc,
+.totalAmount .desc {
     width: 60%;
 }
 

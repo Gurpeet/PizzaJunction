@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
-import { Globals, orderType } from './../../shared/components/globals/global';
+import { Globals, orderType, discountPercent } from './../../shared/components/globals/global';
 import { Address } from './../../shared/models/address.model';
 
 @Component({
@@ -11,6 +11,7 @@ export class CheckoutComponent implements OnInit {
     private cartDetails: CartItem;
     private deliveryAddress: Address;
     private deliveryFee: number = 0;
+    discount_Percent: number = discountPercent;
     address: any = {};
     order_Type: any = orderType;
     constructor(private storageService: StorageService, private globals: Globals) {
@@ -20,7 +21,10 @@ export class CheckoutComponent implements OnInit {
     ngOnInit() {
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
-        this.deliveryFee = 0;
+        if (this.deliveryAddress) {
+            this.deliveryFee = this.deliveryAddress.DeliveryFee;
+            this.order_Type = this.deliveryAddress.OrderType;
+        }
     }
 
     populateDeliveryAddress = function () {

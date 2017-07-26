@@ -46,20 +46,40 @@
                     <div class="col-md-3 col-sm-3"></div>
                     <div class="col-md-2 col-sm-2">GST ({{globals.getGSTAmount()}}%)</div>
                     <div class="col-md-7 col-sm-7">
-                        {{ ((globals.getGSTAmount() * cartDetails?.totalPrice / 100) ? (globals.getGSTAmount() * cartDetails?.totalPrice / 100):
-                        0) | currency:'USD': true }}
+                        {{ globals.getGSTCalculation(cartDetails) | currency:'USD': true }}
                     </div>
                     <!--5% of total sum-->
                 </div>
-                <div class="total line-item row">
+                <div class="totalAmount line-item row">
                     <div class="col-md-3 col-sm-3"></div>
                     <div class="col-md-2 col-sm-2">Total</div>
                     <div class="col-md-7 col-sm-7">
-                        {{ ((cartDetails?.totalPrice + deliveryFee + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) ? (cartDetails?.totalPrice
-                        + deliveryFee + (globals.getGSTAmount() * cartDetails?.totalPrice / 100)) : 0) | currency:'USD':
-                        true }}
+                        {{ globals.getTotalAmount(cartDetails, deliveryFee) | currency:'USD': true }}
                     </div>
                     <!--Get total sum of order including Delivery Fee, GST-->
+                </div>
+                <div class="discount line-item row">
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-2 col-sm-2">Discount ({{discount_Percent}}%)</div>
+                    <div class="col-md-7 col-sm-7">
+                        {{ globals.getDiscountedAmount(globals.getTotalAmount(cartDetails, deliveryFee)) | currency:'USD': true }}
+                    </div>
+                    <!--discounted amount-->
+                </div>
+                <div class="total line-item row">
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-2 col-sm-2">Net Payable</div>
+                    <div class="col-md-7 col-sm-7">
+                        {{ globals.getNetPayable(globals.getTotalAmount(cartDetails, deliveryFee)) | currency:'USD': true }}
+                    </div>
+                    <!--Net payable amount-->
+                </div>
+                <div class="total line-item row">
+                    <div class="cart-button button-group pull-right">
+                        <button type="button" class="btn btn-cart" title="Change Order" [routerLink]="['/menu']">
+                            Change Order
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

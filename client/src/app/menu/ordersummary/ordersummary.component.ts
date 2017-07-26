@@ -2,7 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Address } from './../../shared/models/address.model';
-import { Globals, orderType, paymentMode, minOrderAmount } from './../../shared/components/globals/global';
+import {
+    Globals,
+    orderType,
+    paymentMode,
+    minOrderAmount,
+    discountPercent
+} from './../../shared/components/globals/global';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +23,7 @@ export class OrderSummaryComponent implements OnInit {
     private deliveryFee: number = 0;
     private order_Type: number = 0;
     private min_Order: number = minOrderAmount;
+    private discount_Percent: number = discountPercent;
     deliveryAdd: any;
     order_Types: any = orderType;
     payment_Mode: any = paymentMode;
@@ -49,6 +56,7 @@ export class OrderSummaryComponent implements OnInit {
             this.router.navigate(['delivery-address', orderType.Delivery]);
         }
     };
+    
     reduceByOne = function (itemId: number) {
         let items = this.cartDetails.items;
         items[itemId].qty--;
@@ -67,5 +75,5 @@ export class OrderSummaryComponent implements OnInit {
         this.cartDetails.totalQty -= items[itemId].qty;
         delete this.cartDetails.items[itemId];
         this.storageService.write('cartItems', this.cartDetails);
-    }
+    };
 }

@@ -11,6 +11,7 @@ exports.defaultCountry = 'Canada';
 exports.orderType = { 'Delivery': 1, 'Pickup': 2 };
 exports.paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
 exports.minOrderAmount = 15;
+exports.discountPercent = 10; //discout will be in percent
 var GSTAmount = 5;
 var Globals = (function () {
     function Globals() {
@@ -20,6 +21,20 @@ var Globals = (function () {
                 Object.keys(menuItems.items).map(function (id) { return arr.push(menuItems.items[id]); });
             }
             return arr;
+        };
+        this.getTotalAmount = function (cartDetails, deliveryFee) {
+            return ((cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) ?
+                (cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) : 0);
+        };
+        this.getDiscountedAmount = function (totalAmount) {
+            return (totalAmount * exports.discountPercent / 100);
+        };
+        this.getGSTCalculation = function (cartDetails) {
+            return ((GSTAmount * cartDetails.totalPrice / 100) ?
+                (GSTAmount * cartDetails.totalPrice / 100) : 0);
+        };
+        this.getNetPayable = function (totalAmount) {
+            return (totalAmount - this.getDiscountedAmount(totalAmount));
         };
     }
     Globals.prototype.getGSTAmount = function () {

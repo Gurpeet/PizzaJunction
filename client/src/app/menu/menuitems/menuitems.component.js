@@ -9,11 +9,16 @@ var MenuItemsComponent = (function () {
         this.route = route;
         this.storageService = storageService;
         this.groupBy = function (xs, key) {
-            var objItems = xs.reduce(function (rv, x) {
-                (rv[x[key]] = rv[x[key]] || []).push(x);
-                return rv;
-            }, {});
-            return Object.keys(objItems).map(function (k) { return objItems[k]; });
+            if (xs) {
+                var objItems_1 = xs.reduce(function (rv, x) {
+                    (rv[x[key]] = rv[x[key]] || []).push(x);
+                    return rv;
+                }, {});
+                return Object.keys(objItems_1).map(function (k) { return objItems_1[k]; });
+            }
+            else {
+                return xs;
+            }
         };
         this.addToCart = function (item) {
             var cartItem = this.storageService.read('cartItems');

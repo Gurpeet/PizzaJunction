@@ -20,10 +20,17 @@ var MenuService = (function () {
         return this.http.get(global_1.apiPath + 'MenuItems/getMenuItems')
             .catch(this.errorMethod);
     };
+    ;
+    MenuService.prototype.getItemsById = function (id) {
+        return this.http.get(global_1.apiPath + 'MenuItems/getItemById?id=' + id)
+            .catch(this.errorMethod);
+    };
+    ;
     MenuService.prototype.errorMethod = function (error) {
         console.log(error);
         return Observable_1.Observable.throw(error || 'Server Error');
     };
+    ;
     return MenuService;
 }());
 MenuService = tslib_1.__decorate([

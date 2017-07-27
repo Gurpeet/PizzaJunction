@@ -3,7 +3,6 @@ import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-// import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from './../../shared/models/menuitem';
 
 import 'rxjs/add/operator/map';
@@ -24,10 +23,15 @@ export class MenuService {
     getMenuItems(): Observable<MenuItem[]> {
         return this.http.get(apiPath + 'MenuItems/getMenuItems')
             .catch(this.errorMethod);
-    }
+    };
+
+    getItemsById(id: number): Observable<MenuItem[]> {
+        return this.http.get(apiPath + 'MenuItems/getItemById?id='+id)
+            .catch(this.errorMethod);
+    };
 
     errorMethod(error: Response) {
         console.log(error);
         return Observable.throw(error || 'Server Error');
-    }
+    };
 }

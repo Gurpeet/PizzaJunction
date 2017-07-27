@@ -50,7 +50,7 @@ module.exports = function (Menuitem) {
     Menuitem.remoteMethod('getItemById', {
         accepts: {arg: 'id', type: 'string'},
         http: { path: '/getItemById', verb: 'get' },
-        returns: { arg: 'GetMenuItem', type: 'string' }
+        returns: { arg: 'GetMenuItems', type: 'string' }
     });
 
 };

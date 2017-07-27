@@ -9,6 +9,8 @@ import {
     minOrderAmount,
     discountPercent
 } from './../../shared/components/globals/global';
+import { MenuItem } from './../../shared/models/menuitem';
+import { MenuService } from './../../shared/services/menu.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,7 +31,8 @@ export class OrderSummaryComponent implements OnInit {
     payment_Mode: any = paymentMode;
     constructor(private storageService: StorageService,
         private globals: Globals,
-        private router: Router) {
+        private router: Router,
+        private menuService: MenuService) {
     }
 
     ngOnInit() {
@@ -56,7 +59,7 @@ export class OrderSummaryComponent implements OnInit {
             this.router.navigate(['delivery-address', orderType.Delivery]);
         }
     };
-    
+
     reduceByOne = function (itemId: number) {
         let items = this.cartDetails.items;
         items[itemId].qty--;
@@ -76,4 +79,8 @@ export class OrderSummaryComponent implements OnInit {
         delete this.cartDetails.items[itemId];
         this.storageService.write('cartItems', this.cartDetails);
     };
+
+    addToppins = function (id: number) {
+        this.menuService.getItemsById(id).subscribe(items => { console.log(items) });
+    }
 }

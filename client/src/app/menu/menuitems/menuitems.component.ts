@@ -20,17 +20,21 @@ export class MenuItemsComponent implements OnInit {
     };
 
     groupBy = function (xs: MenuItem[], key: string): MenuItem[] {
-        let objItems = xs.reduce(function (rv, x) {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv;
-        }, {});
-        return Object.keys(objItems).map((k) => objItems[k]);
+        if (xs) {
+            let objItems = xs.reduce(function (rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+            return Object.keys(objItems).map((k) => objItems[k]);
+        } else {
+            return xs;
+        }
     };
 
     addToCart = function (item: MenuItem) {
         let cartItem = this.storageService.read('cartItems');
         if (!cartItem) {
-            cartItem = {items: {}, totalQty: 0, totalPrice: 0};
+            cartItem = { items: {}, totalQty: 0, totalPrice: 0 };
         }
         let items = cartItem.items;
         let storedItem = items[item.MenuItemId];

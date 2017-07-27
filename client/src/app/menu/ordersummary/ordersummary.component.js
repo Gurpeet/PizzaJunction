@@ -4,12 +4,14 @@ var tslib_1 = require("tslib");
 var core_1 = require("@angular/core");
 var storage_service_1 = require("./../../shared/services/storage.service");
 var global_1 = require("./../../shared/components/globals/global");
+var menu_service_1 = require("./../../shared/services/menu.service");
 var router_1 = require("@angular/router");
 var OrderSummaryComponent = (function () {
-    function OrderSummaryComponent(storageService, globals, router) {
+    function OrderSummaryComponent(storageService, globals, router, menuService) {
         this.storageService = storageService;
         this.globals = globals;
         this.router = router;
+        this.menuService = menuService;
         this.deliveryFee = 0;
         this.order_Type = 0;
         this.min_Order = global_1.minOrderAmount;
@@ -49,6 +51,9 @@ var OrderSummaryComponent = (function () {
             delete this.cartDetails.items[itemId];
             this.storageService.write('cartItems', this.cartDetails);
         };
+        this.addToppins = function (id) {
+            this.menuService.getItemsById(id).subscribe(function (items) { console.log(items); });
+        };
     }
     OrderSummaryComponent.prototype.ngOnInit = function () {
         this.cartDetails = this.storageService.read('cartItems');
@@ -73,7 +78,8 @@ OrderSummaryComponent = tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:paramtypes", [storage_service_1.StorageService,
         global_1.Globals,
-        router_1.Router])
+        router_1.Router,
+        menu_service_1.MenuService])
 ], OrderSummaryComponent);
 exports.OrderSummaryComponent = OrderSummaryComponent;
 //# sourceMappingURL=ordersummary.component.js.map

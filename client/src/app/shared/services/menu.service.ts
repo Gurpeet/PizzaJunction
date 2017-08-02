@@ -26,7 +26,7 @@ export class MenuService {
     };
 
     getItemsById(id: number): Observable<MenuItem[]> {
-        return this.http.get(apiPath + 'MenuItems/getItemById?id='+id)
+        return this.http.get(apiPath + 'MenuItems/getItemById?id=' + id)
             .catch(this.errorMethod);
     };
 

@@ -12,7 +12,7 @@ export const defaultCountry = 'Canada';
 export const orderType = { 'Delivery': 1, 'Pickup': 2 };
 export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3};
 export const minOrderAmount = 15;
-export const discountPercent = 10;     //discout will be in percent
+export const discountPercent = 10;     // discout will be in percent
 
 const GSTAmount = 5;
 
@@ -48,16 +48,16 @@ export class Globals {
             (cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) : 0);
     };
 
-    private getDiscountedAmount = function (totalAmount: number) {
+    getDiscountedAmount = function (totalAmount: number) {
         return (totalAmount * discountPercent / 100);
     };
 
     getGSTCalculation = function (cartDetails: any) {
         return ((GSTAmount * cartDetails.totalPrice / 100) ?
             (GSTAmount * cartDetails.totalPrice / 100) : 0);
-    }
+    };
 
     getNetPayable = function(totalAmount: number){
         return (totalAmount - this.getDiscountedAmount(totalAmount));
-    }
+    };
 }

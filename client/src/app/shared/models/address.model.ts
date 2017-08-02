@@ -14,7 +14,8 @@ export interface Address {
     OrderType?: number;
     Distance?: number;
     DeliveryFee?: number;
-    PaymentMode: number;
+    PaymentMode?: number;
+    IsCheckout?: number;
 };
 
 export interface GeoLocation {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
-import { Globals, orderType, discountPercent } from './../../shared/components/globals/global';
+import { Globals, orderType, discountPercent, paymentMode } from './../../shared/components/globals/global';
 import { Address } from './../../shared/models/address.model';
 
 @Component({
@@ -13,9 +13,11 @@ export class CheckoutComponent implements OnInit {
     private cartDetails: CartItem;
     private deliveryAddress: Address;
     private deliveryFee: number = 0;
+    paymentModes: any = paymentMode;
     discount_Percent: number = discountPercent;
     address: any = {};
-    order_Type: any;
+    order_Type: number;
+    payment_mode: number = paymentMode.PayNow;
     constructor(private storageService: StorageService, private globals: Globals, private route: ActivatedRoute) {
 
     }
@@ -24,6 +26,7 @@ export class CheckoutComponent implements OnInit {
         this.states = this.route.snapshot.data['states'].GetStates;
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
+        this.payment_mode = this.deliveryAddress.OrderType;     // TODO: change this to payment mode
         if (this.deliveryAddress) {
             this.deliveryFee = this.deliveryAddress.DeliveryFee;
             this.order_Type = this.deliveryAddress.OrderType;

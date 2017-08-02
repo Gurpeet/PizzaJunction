@@ -10,6 +10,10 @@ exports.RouteConfig = [
     { path: 'orders', loadChildren: '/app/orders/orders-module/orders.module#OrdersModule' },
     { path: 'about-us', loadChildren: '/app/about-us/about-us.module#AboutUsModule' },
     { path: 'contact-us', loadChildren: '/app/contact-us/contact-us.module#ContactUsModule' },
+    { path: 'delivery-address/:orderType/:isCheckout',
+        loadChildren: '/app/delivery-address/delivery-address.module#DeliveryAddressModule',
+        data: { orderType: global_1.orderType.Delivery }
+    },
     { path: 'delivery-address/:orderType',
         loadChildren: '/app/delivery-address/delivery-address.module#DeliveryAddressModule',
         data: { orderType: global_1.orderType.Delivery }

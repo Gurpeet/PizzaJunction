@@ -9,7 +9,6 @@ import {
     minOrderAmount,
     discountPercent
 } from './../../shared/components/globals/global';
-import { MenuItem } from './../../shared/models/menuitem';
 import { MenuService } from './../../shared/services/menu.service';
 import { Router } from '@angular/router';
 
@@ -24,8 +23,8 @@ export class OrderSummaryComponent implements OnInit {
     @Input() cartDetails: CartItem;
     private deliveryFee: number = 0;
     private order_Type: number = 0;
-    private min_Order: number = minOrderAmount;
-    private discount_Percent: number = discountPercent;
+    min_Order: number = minOrderAmount;
+    discount_Percent: number = discountPercent;
     deliveryAdd: any;
     order_Types: any = orderType;
     payment_Mode: any = paymentMode;
@@ -56,7 +55,7 @@ export class OrderSummaryComponent implements OnInit {
         if (this.order_Type !== 0) {
             this.router.navigate(['/menu/checkout']);
         } else {
-            this.router.navigate(['delivery-address', orderType.Delivery]);
+            this.router.navigate(['delivery-address', orderType.Delivery, 1]);
         }
     };
 
@@ -81,6 +80,6 @@ export class OrderSummaryComponent implements OnInit {
     };
 
     addToppins = function (id: number) {
-        this.menuService.getItemsById(id).subscribe(items => { console.log(items) });
-    }
+        this.menuService.getItemsById(id).subscribe(items => { console.log(items); });
+    };
 }

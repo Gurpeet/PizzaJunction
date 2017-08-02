@@ -30,7 +30,7 @@ var OrderSummaryComponent = (function () {
                 this.router.navigate(['/menu/checkout']);
             }
             else {
-                this.router.navigate(['delivery-address', global_1.orderType.Delivery]);
+                this.router.navigate(['delivery-address', global_1.orderType.Delivery, 1]);
             }
         };
         this.reduceByOne = function (itemId) {

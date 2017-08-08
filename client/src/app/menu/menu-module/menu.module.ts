@@ -13,11 +13,13 @@ import { OrderConfirmation } from './../../menu/order-confirmation/order-confirm
 import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-delivery-address.component';
 import { DeliveryAddressResolver } from './../../delivery-address/delivery-address.resolver';
 import { AddressService } from './../../shared/services/address.service';
+import { ModalModule } from 'ng2-modal';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ModalModule,
         RouterModule.forChild(MenuRoutes)
     ],
     declarations: [

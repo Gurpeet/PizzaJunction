@@ -16,6 +16,7 @@ var order_confirmation_component_1 = require("./../../menu/order-confirmation/or
 var menu_delivery_address_component_1 = require("./../menu-delivery-address/menu-delivery-address.component");
 var delivery_address_resolver_1 = require("./../../delivery-address/delivery-address.resolver");
 var address_service_1 = require("./../../shared/services/address.service");
+var ng2_modal_1 = require("ng2-modal");
 var MenuModule = (function () {
     function MenuModule() {
     }
@@ -26,6 +27,7 @@ MenuModule = tslib_1.__decorate([
         imports: [
             common_1.CommonModule,
             forms_1.FormsModule,
+            ng2_modal_1.ModalModule,
             router_1.RouterModule.forChild(menu_routes_1.MenuRoutes)
         ],
         declarations: [

@@ -51,8 +51,22 @@ var OrderSummaryComponent = (function () {
             delete this.cartDetails.items[itemId];
             this.storageService.write('cartItems', this.cartDetails);
         };
-        this.addToppins = function (id) {
-            this.menuService.getItemsById(id).subscribe(function (items) { console.log(items); });
+        this.getToppings = function (item, objModal) {
+            var _this = this;
+            this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
+                (item.Size ? item.Size : "") +
+                (item.MetricType == "Inches" ? "\" " : " ") +
+                item.Description;
+            this.menuService.getItemsById(1).subscribe(function (items) {
+                _this.toppingItems = items.GetMenuItems;
+                objModal.open();
+            });
+        };
+        this.closeToppings = function (objModal) {
+            objModal.close();
+        };
+        this.addTopping = function (item) {
+            console.log(item);
         };
     }
     OrderSummaryComponent.prototype.ngOnInit = function () {

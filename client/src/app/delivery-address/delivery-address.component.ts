@@ -35,6 +35,7 @@ export class DeliveryAddress implements OnInit, OnDestroy {
         this.address = <Address>this.storageService.read('deliveryAddress');
         let ordTypeId = (this.route.snapshot.params['orderType'] ? this.route.snapshot.params['orderType'] : orderType.Delivery);
         let isCheckout = (this.route.snapshot.params['isCheckout'] ? this.route.snapshot.params['isCheckout'] : 0);
+        console.log(isCheckout);
 
         if (!this.address) {
             this.address = {
@@ -132,7 +133,8 @@ export class DeliveryAddress implements OnInit, OnDestroy {
             OrderType: this.address.OrderType,
             Distance: 0,
             DeliveryFee: 0,
-            PaymentMode: paymentMode.PayNow
+            PaymentMode: paymentMode.PayNow,
+            IsCheckout: this.address.IsCheckout
         };
     };
 

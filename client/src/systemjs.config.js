@@ -39,6 +39,7 @@
       'ngx-bootstrap': 'node_modules/ngx-bootstrap',
       'ng2-table': 'node_modules/ng2-table',
       'rxjs': 'npm:rxjs',
+      "ng2-modal": "node_modules/ng2-modal",
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
 
     },
@@ -74,6 +75,10 @@
       'ng2-table': {
         defaultExtension: 'js'
       },
+      "ng2-modal": { 
+        main: "index.js", 
+        "defaultExtension": "js"
+      }
     }
   });
 })(this);

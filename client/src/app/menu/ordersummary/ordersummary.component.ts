@@ -11,6 +11,7 @@ import {
 } from './../../shared/components/globals/global';
 import { MenuService } from './../../shared/services/menu.service';
 import { Router } from '@angular/router';
+import { Modal } from 'ng2-modal';
 
 @Component({
     selector: 'order-summary',
@@ -23,11 +24,13 @@ export class OrderSummaryComponent implements OnInit {
     @Input() cartDetails: CartItem;
     private deliveryFee: number = 0;
     private order_Type: number = 0;
+    itemName: number;
     min_Order: number = minOrderAmount;
     discount_Percent: number = discountPercent;
     deliveryAdd: any;
     order_Types: any = orderType;
     payment_Mode: any = paymentMode;
+    toppingItems: any;
     constructor(private storageService: StorageService,
         private globals: Globals,
         private router: Router,
@@ -79,7 +82,22 @@ export class OrderSummaryComponent implements OnInit {
         this.storageService.write('cartItems', this.cartDetails);
     };
 
-    addToppins = function (id: number) {
-        this.menuService.getItemsById(id).subscribe(items => { console.log(items); });
+    getToppings = function (item: any, objModal: Modal) {
+        this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
+            (item.Size ? item.Size : "") + 
+            (item.MetricType == "Inches" ? "\" " : " ") +
+            item.Description;
+        this.menuService.getItemsById(1).subscribe((items: any) => {
+            this.toppingItems = items.GetMenuItems;
+            objModal.open();
+        });
     };
+
+    closeToppings = function (objModal: Modal) {
+        objModal.close();
+    }
+
+    addTopping = function (item: any) {
+        console.log(item);
+    }
 }

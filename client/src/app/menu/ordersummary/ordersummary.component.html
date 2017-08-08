@@ -15,6 +15,7 @@
                         <i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" title="Reduce by 1"
                             *ngIf="item.qty > 1"></i> {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType
                         == "Inches" ? "\"" : ""}} {{item.item.Description}}
+                        <i class="fa fa-pencil-square pointer" aria-hidden="true" title="Extra Toppings" (click)="getToppings(item.item, toppingModal);"></i>
                     </div>
                     <div class="amount pull-left" *ngIf="item">
                         {{item.price | currency: 'USD': true}}
@@ -110,3 +111,29 @@
         </div>
     </div>
 </div>
+
+
+<modal #toppingModal>
+    <modal-header>
+        <h4>{{itemName}}</h4>
+    </modal-header>
+    <modal-content>
+        <!-- This modal shows Toppings for item {{itemId}}. -->
+        <!-- Iterate through items here -->
+        <div class="col-md-12 col-sm-12" *ngFor="let item of toppingItems">
+            <div class="description" title="item.Description">
+                {{item.ItemDescription.length > 30 ? item.ItemDescription.substr(0,30) + '...': item.ItemDescription}}
+            </div>
+            <div class="price">
+                <div class="desc pull-left">
+                    {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
+                </div>
+                <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
+                <button class="pull-right btn btn-add" (click)="addTopping(item)"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="closeToppings(toppingModal)">I'm done!</button>
+    </modal-footer>
+</modal>

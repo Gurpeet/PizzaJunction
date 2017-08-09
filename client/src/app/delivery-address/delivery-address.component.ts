@@ -35,8 +35,7 @@ export class DeliveryAddress implements OnInit, OnDestroy {
         this.address = <Address>this.storageService.read('deliveryAddress');
         let ordTypeId = (this.route.snapshot.params['orderType'] ? this.route.snapshot.params['orderType'] : orderType.Delivery);
         let isCheckout = (this.route.snapshot.params['isCheckout'] ? this.route.snapshot.params['isCheckout'] : 0);
-        console.log(isCheckout);
-
+ 
         if (!this.address) {
             this.address = {
                 AddressId: 0,
@@ -109,7 +108,6 @@ export class DeliveryAddress implements OnInit, OnDestroy {
 
     navigateToMenu = function (formAddress: Address) {
         this.storageService.write('deliveryAddress', formAddress);
-        console.log(formAddress.IsCheckout);
         if (formAddress.IsCheckout == 1) {
             this.router.navigate(['menu/checkout']);
         } else {

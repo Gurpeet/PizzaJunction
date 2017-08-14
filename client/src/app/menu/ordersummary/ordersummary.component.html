@@ -9,15 +9,16 @@
     <div class="list-group-item">
         <div class="order-summary">
             <div class="caption" *ngIf="(cartDetails && cartDetails.totalQty)">
-                <div class="line-item" *ngFor="let item of globals.generateArray(cartDetails)">
-                    <div class="desc pull-left" *ngIf="item">
+                <div class="line-item " *ngFor="let item of globals.generateArray(cartDetails)">
+                    <div class="desc pull-left col-md-9 col-sm-9" *ngIf="item">
                         <i class="fa fa-times-circle pointer" aria-hidden="true" (click)="removeItem(item.item.MenuItemId)" title="Remove Item"></i>
                         <i class="fa fa-minus-circle pointer" aria-hidden="true" (click)="reduceByOne(item.item.MenuItemId)" title="Reduce by 1"
                             *ngIf="item.qty > 1"></i> {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType
                         == "Inches" ? "\"" : ""}} {{item.item.Description}}
-                        <i class="fa fa-pencil-square pointer" aria-hidden="true" title="Extra Toppings" (click)="getToppings(item.item, toppingModal);"></i>
+                        <i *ngIf="item.item.NumberOfToppings > 0" class="fa fa-pencil-square pointer" aria-hidden="true" title="Extra Toppings" (click)="getToppings(item.item, toppingModal);"></i>
                     </div>
-                    <div class="amount pull-left" *ngIf="item">
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="amount pull-left col-md-2 col-sm-2" *ngIf="item">
                         {{item.price | currency: 'USD': true}}
                     </div>
                 </div>

@@ -84,8 +84,8 @@ export class OrderSummaryComponent implements OnInit {
 
     getToppings = function (item: any, objModal: Modal) {
         this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
-            (item.Size ? item.Size : "") + 
-            (item.MetricType == "Inches" ? "\" " : " ") +
+            (item.Size ? item.Size : '') +
+            (item.MetricType === 'Inches' ? '\" ' : ' ') +
             item.Description;
         this.menuService.getItemsById(1).subscribe((items: any) => {
             this.toppingItems = items.GetMenuItems;
@@ -95,9 +95,9 @@ export class OrderSummaryComponent implements OnInit {
 
     closeToppings = function (objModal: Modal) {
         objModal.close();
-    }
+    };
 
     addTopping = function (item: any) {
         console.log(item);
-    }
+    };
 }

@@ -54,8 +54,8 @@ var OrderSummaryComponent = (function () {
         this.getToppings = function (item, objModal) {
             var _this = this;
             this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
-                (item.Size ? item.Size : "") +
-                (item.MetricType == "Inches" ? "\" " : " ") +
+                (item.Size ? item.Size : '') +
+                (item.MetricType === 'Inches' ? '\" ' : ' ') +
                 item.Description;
             this.menuService.getItemsById(1).subscribe(function (items) {
                 _this.toppingItems = items.GetMenuItems;

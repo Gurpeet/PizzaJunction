@@ -11,7 +11,7 @@ exports.defaultCountry = 'Canada';
 exports.orderType = { 'Delivery': 1, 'Pickup': 2 };
 exports.paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
 exports.minOrderAmount = 15;
-exports.discountPercent = 10; // discout will be in percent
+exports.discountPercent = 0; // discout will be in percent
 var GSTAmount = 5;
 var Globals = (function () {
     function Globals() {

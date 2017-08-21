@@ -27,6 +27,10 @@ export class CheckoutComponent implements OnInit {
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
         this.payment_mode = this.deliveryAddress.OrderType;     // TODO: change this to payment mode
+        this.address = {
+            Name: this.deliveryAddress.Name,
+            Phone: this.deliveryAddress.Phone
+        };
         if (this.deliveryAddress) {
             this.deliveryFee = this.deliveryAddress.DeliveryFee;
             this.order_Type = this.deliveryAddress.OrderType;
@@ -42,7 +46,9 @@ export class CheckoutComponent implements OnInit {
         } else {
             // clear address controls
             this.address = {
-                SameAsDelivery: this.deliveryAddress.SameAsDelivery
+                SameAsDelivery: this.deliveryAddress.SameAsDelivery,
+                Name: this.deliveryAddress.Name,
+                Phone: this.deliveryAddress.Phone
             };
         }
     };

@@ -58,7 +58,7 @@
                     </div>
                     <!--Get total sum of order including Delivery Fee, GST-->
                 </div>
-                <div class="discount line-item row">
+                <div class="discount line-item row" *ngIf="discount_Percent > 0">
                     <div class="col-md-3 col-sm-3"></div>
                     <div class="col-md-2 col-sm-2">Discount ({{discount_Percent}}%)</div>
                     <div class="col-md-7 col-sm-7">
@@ -66,7 +66,7 @@
                     </div>
                     <!--discounted amount-->
                 </div>
-                <div class="total line-item row">
+                <div class="total line-item row"  *ngIf="discount_Percent > 0">
                     <div class="col-md-3 col-sm-3"></div>
                     <div class="col-md-2 col-sm-2">Net Payable</div>
                     <div class="col-md-7 col-sm-7">

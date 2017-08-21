@@ -57,14 +57,14 @@
                     </div>
                     <!--Get total sum of order including Delivery Fee, GST-->
                 </div>
-                <div class="discount line-item">
+                <div class="discount line-item"  *ngIf="discount_Percent > 0">
                     <div class="desc pull-left">Discount({{discount_Percent}}%)</div>
                     <div class="amount pull-right">
                         {{ globals.getDiscountedAmount(globals.getTotalAmount(cartDetails, deliveryFee)) | currency:'USD': true }}
                     </div>
                     <!--Get disocunted amount-->
                 </div>
-                <div class="total line-item">
+                <div class="total line-item"  *ngIf="discount_Percent > 0">
                     <div class="desc pull-left last">Net Payable</div>
                     <div class="amount pull-right">
                         {{ globals.getNetPayable(globals.getTotalAmount(cartDetails, deliveryFee)) | currency:'USD': true }}

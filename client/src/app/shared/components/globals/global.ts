@@ -12,7 +12,7 @@ export const defaultCountry = 'Canada';
 export const orderType = { 'Delivery': 1, 'Pickup': 2 };
 export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3};
 export const minOrderAmount = 15;
-export const discountPercent = 10;     // discout will be in percent
+export const discountPercent = 0;     // discout will be in percent
 
 const GSTAmount = 5;
 

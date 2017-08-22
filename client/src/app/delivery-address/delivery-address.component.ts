@@ -16,8 +16,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class DeliveryAddress implements OnInit, OnDestroy {
     private states: any[];
     private address: Address;
-    minMoment: Date = this.getDeliveryMinTime();
-    maxMoment: Date = this.getDeliveryMaxTime();
+    minTime: Date = this.getDeliveryMinTime();
+    maxTime: Date = this.getDeliveryMaxTime();
     order_Type: any = orderType;
 
     constructor(private storageService: StorageService,
@@ -38,7 +38,7 @@ export class DeliveryAddress implements OnInit, OnDestroy {
         if (!this.address) {
             this.address = {
                 AddressId: 0,
-                DeliveryTime: null,
+                DeliveryTime: this.minTime.toString(),
                 Street: '',
                 Appartment: '',
                 City: '',
@@ -54,6 +54,7 @@ export class DeliveryAddress implements OnInit, OnDestroy {
                 PaymentMode: paymentMode.PayNow,
                 IsCheckout: isCheckout
             };
+
         } else {
             this.address.OrderType = ordTypeId;
             this.address.IsCheckout = isCheckout;

@@ -5,10 +5,10 @@ import { DeliveryAddress } from './delivery-address.component';
 import { DeliveryAddressResolver } from './delivery-address.resolver';
 import { AddressService } from './../shared/services/address.service';
 import { FormsModule } from '@angular/forms';
-import { DateTimePickerModule } from 'ng-pick-datetime';
 import { MapService } from './../shared/services/map.service';
 import { Globals } from './../shared/components/globals/global';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { TimepickerModule } from 'ngx-bootstrap';
 
 const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: {states: DeliveryAddressResolver } }];
 
@@ -16,8 +16,8 @@ const addressRoutes: Routes = [{ path: '', component: DeliveryAddress, resolve: 
     imports: [
         CommonModule,
         FormsModule,
-        DateTimePickerModule,
         ToastModule.forRoot(),
+        TimepickerModule.forRoot(),
         RouterModule.forChild(addressRoutes)
     ],
     declarations: [

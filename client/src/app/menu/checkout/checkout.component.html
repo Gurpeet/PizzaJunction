@@ -196,13 +196,14 @@
                         </div>
                     </div>
                     <!-- Payment Integration -->
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="payment_mode != paymentModes.PayInStore; else noPaymentTemplate">
                         <div class="col-sm-11">
                             <textarea name="message" id="message" class="form-control" rows="5" placeholder="Special instructions for driver" [(ngModel)]="address.Message"
                                 required></textarea>
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
+                    <ng-template #noPaymentTemplate>Only needed for online payments</ng-template>
                 </div>
             </div>
         </div>

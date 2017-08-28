@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MenuItem, CartItem } from './../../shared/models/menuitem';
+import { MenuItem, CartItem, ItemType } from './../../shared/models/menuitem';
 import { StorageService } from './../../shared/services/storage.service';
+import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
     selector: 'menu-items',
@@ -10,13 +11,19 @@ import { StorageService } from './../../shared/services/storage.service';
 })
 export class MenuItemsComponent implements OnInit {
     private menuItems: MenuItem[];
+    private itemTypes: ItemType[];
     @Output() cartChanged: EventEmitter<CartItem>;
-    constructor(private route: ActivatedRoute, private storageService: StorageService) {
+
+    constructor(private route: ActivatedRoute,
+        private storageService: StorageService,
+        private _scrollToService: ScrollToService) {
         this.cartChanged = new EventEmitter<CartItem>();
     };
 
     ngOnInit() {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
+        console.log(this.menuItems);
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
     };
 
     groupBy = function (xs: MenuItem[], key: string): MenuItem[] {
@@ -49,4 +56,12 @@ export class MenuItemsComponent implements OnInit {
         this.storageService.write('cartItems', cartItem);
         this.cartChanged.emit(cartItem);
     };
+
+    public triggerScrollTo($event: Event, targetCategory: String) {
+        const config: ScrollToConfig = {
+            target: targetCategory.toString()
+        }
+
+        this._scrollToService.scrollTo($event, config);
+    }
 }

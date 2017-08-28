@@ -14,12 +14,16 @@ import { MenuDeliveryAddressComponent } from './../menu-delivery-address/menu-de
 import { DeliveryAddressResolver } from './../../delivery-address/delivery-address.resolver';
 import { AddressService } from './../../shared/services/address.service';
 import { ModalModule } from 'ng2-modal';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ItemTypeResolver } from './../itemtype-resolver/itemtype-resolver.service';
+import { MenuItemsResolver } from './../menuitems-resolver/menuItems-resolver.service';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ModalModule,
+        ScrollToModule.forRoot(),
         RouterModule.forChild(MenuRoutes)
     ],
     declarations: [
@@ -34,7 +38,9 @@ import { ModalModule } from 'ng2-modal';
         StorageService,
         Globals,
         AddressService,
-        DeliveryAddressResolver
+        DeliveryAddressResolver,
+        ItemTypeResolver,
+        MenuItemsResolver
     ]
 })
 export class MenuModule { }

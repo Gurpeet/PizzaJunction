@@ -18,6 +18,23 @@ module.exports = function (Menuitem) {
     Menuitem.disableRemoteMethodByName('count');
     Menuitem.disableRemoteMethodByName('exists');
 
+Menuitem.getItemTypes = function (cb) {
+        var ds = Menuitem.dataSource;
+        var sql = "EXEC [dbo].[GetItemTypes]";  //Executes sproc
+
+        ds.connector.query(sql, [], function (err, items) {
+            if (err) {
+                console.error(err);     //handle error
+            }
+            cb(err, items);
+        });
+    };
+
+    Menuitem.remoteMethod('getItemTypes', {
+        http: { path: '/getItemTypes', verb: 'get' },
+        returns: { arg: 'GetItemTypes', type: 'string' }
+    });
+
     Menuitem.getMenuItems = function (cb) {
         var ds = Menuitem.dataSource;
         var sql = "EXEC [dbo].[GetMenuItems] @itemTypeId = 1";  //Executes sproc

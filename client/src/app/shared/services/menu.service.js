@@ -16,6 +16,11 @@ var MenuService = (function () {
         // this.route.snapshot.params['id'];
         // [routerLink]="['/path', param]"
     }
+    MenuService.prototype.getItemTypes = function () {
+        return this.http.get(global_1.apiPath + 'MenuItems/getItemTypes')
+            .catch(this.errorMethod);
+    };
+    ;
     MenuService.prototype.getMenuItems = function () {
         return this.http.get(global_1.apiPath + 'MenuItems/getMenuItems')
             .catch(this.errorMethod);

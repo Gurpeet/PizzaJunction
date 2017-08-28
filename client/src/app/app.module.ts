@@ -13,8 +13,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './error404/error404.component';
-import { MenuItemsResolver } from './menu/menuitems-resolver/menuItems-resolver.service';
-
 
 // Services
 import { MenuService } from './shared/services/menu.service';
@@ -47,7 +45,6 @@ import { RouteConfig } from './routes/routes.config';
   ],
   providers: [
     MenuService,
-    MenuItemsResolver,
     StorageService,
     {
       provide: HTTP_INTERCEPTORS,

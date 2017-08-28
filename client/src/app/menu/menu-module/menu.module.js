@@ -17,6 +17,9 @@ var menu_delivery_address_component_1 = require("./../menu-delivery-address/menu
 var delivery_address_resolver_1 = require("./../../delivery-address/delivery-address.resolver");
 var address_service_1 = require("./../../shared/services/address.service");
 var ng2_modal_1 = require("ng2-modal");
+var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
+var itemtype_resolver_service_1 = require("./../itemtype-resolver/itemtype-resolver.service");
+var menuItems_resolver_service_1 = require("./../menuitems-resolver/menuItems-resolver.service");
 var MenuModule = (function () {
     function MenuModule() {
     }
@@ -28,6 +31,7 @@ MenuModule = tslib_1.__decorate([
             common_1.CommonModule,
             forms_1.FormsModule,
             ng2_modal_1.ModalModule,
+            ngx_scroll_to_1.ScrollToModule.forRoot(),
             router_1.RouterModule.forChild(menu_routes_1.MenuRoutes)
         ],
         declarations: [
@@ -42,7 +46,9 @@ MenuModule = tslib_1.__decorate([
             storage_service_1.StorageService,
             global_1.Globals,
             address_service_1.AddressService,
-            delivery_address_resolver_1.DeliveryAddressResolver
+            delivery_address_resolver_1.DeliveryAddressResolver,
+            itemtype_resolver_service_1.ItemTypeResolver,
+            menuItems_resolver_service_1.MenuItemsResolver
         ]
     })
 ], MenuModule);

@@ -14,3 +14,8 @@ export interface CartItem {
     totalPrice: number;
     totalQty: number;
 };
+
+export interface ItemType {
+    ItemTypeId: number;
+    ItemTypeName: string;
+};

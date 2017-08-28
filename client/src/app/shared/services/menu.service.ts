@@ -3,7 +3,7 @@ import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { MenuItem } from './../../shared/models/menuitem';
+import { MenuItem, ItemType } from './../../shared/models/menuitem';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -19,6 +19,11 @@ export class MenuService {
         // this.route.snapshot.params['id'];
         // [routerLink]="['/path', param]"
     }
+
+    getItemTypes(): Observable<ItemType[]> {
+        return this.http.get(apiPath + 'MenuItems/getItemTypes')
+            .catch(this.errorMethod);
+    };
 
     getMenuItems(): Observable<MenuItem[]> {
         return this.http.get(apiPath + 'MenuItems/getMenuItems')

@@ -15,7 +15,6 @@ var header_component_1 = require("./shared/components/header/header.component");
 var footer_component_1 = require("./shared/components/footer/footer.component");
 var home_component_1 = require("./home/home.component");
 var error404_component_1 = require("./error404/error404.component");
-var menuItems_resolver_service_1 = require("./menu/menuitems-resolver/menuItems-resolver.service");
 // Services
 var menu_service_1 = require("./shared/services/menu.service");
 var storage_service_1 = require("./shared/services/storage.service");
@@ -50,7 +49,6 @@ AppModule = tslib_1.__decorate([
         ],
         providers: [
             menu_service_1.MenuService,
-            menuItems_resolver_service_1.MenuItemsResolver,
             storage_service_1.StorageService,
             {
                 provide: http_1.HTTP_INTERCEPTORS,

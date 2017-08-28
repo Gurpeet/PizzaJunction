@@ -4,10 +4,12 @@ var tslib_1 = require("tslib");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("./../../shared/services/storage.service");
+var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
 var MenuItemsComponent = (function () {
-    function MenuItemsComponent(route, storageService) {
+    function MenuItemsComponent(route, storageService, _scrollToService) {
         this.route = route;
         this.storageService = storageService;
+        this._scrollToService = _scrollToService;
         this.groupBy = function (xs, key) {
             if (xs) {
                 var objItems_1 = xs.reduce(function (rv, x) {
@@ -43,8 +45,16 @@ var MenuItemsComponent = (function () {
     ;
     MenuItemsComponent.prototype.ngOnInit = function () {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
+        console.log(this.menuItems);
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
     };
     ;
+    MenuItemsComponent.prototype.triggerScrollTo = function ($event, targetCategory) {
+        var config = {
+            target: targetCategory.toString()
+        };
+        this._scrollToService.scrollTo($event, config);
+    };
     return MenuItemsComponent;
 }());
 tslib_1.__decorate([
@@ -57,7 +67,9 @@ MenuItemsComponent = tslib_1.__decorate([
         templateUrl: './menuitems.component.html',
         providers: [storage_service_1.StorageService]
     }),
-    tslib_1.__metadata("design:paramtypes", [router_1.ActivatedRoute, storage_service_1.StorageService])
+    tslib_1.__metadata("design:paramtypes", [router_1.ActivatedRoute,
+        storage_service_1.StorageService,
+        ngx_scroll_to_1.ScrollToService])
 ], MenuItemsComponent);
 exports.MenuItemsComponent = MenuItemsComponent;
 //# sourceMappingURL=menuitems.component.js.map

@@ -34,6 +34,7 @@
       'ng-pick-datetime': 'npm:ng-pick-datetime',
       'moment': 'npm:moment',
       'tslib': 'npm:tslib',
+      '@nicky-lenaers/ngx-scroll-to': 'npm:@nicky-lenaers/ngx-scroll-to',
 
       // other libraries
       'ngx-bootstrap': 'node_modules/ngx-bootstrap',
@@ -65,6 +66,10 @@
         defaultExtension: 'js'
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      '@nicky-lenaers/ngx-scroll-to':{
+        main: 'bundles/ngx-scroll-to.umd.js',
         defaultExtension: 'js'
       },
       'ngx-bootstrap': { format: 'cjs', main: 'bundles/ngx-bootstrap.umd.js', defaultExtension: 'js' },

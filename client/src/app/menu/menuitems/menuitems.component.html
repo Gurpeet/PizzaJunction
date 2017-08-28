@@ -1,17 +1,19 @@
-<div class="col-md-4 col-sm-6" *ngFor="let items of menuItems">
-    <div class="product-col">
-        <div class="caption">
-            <h4><a href="product.html">{{items[0].ItemTitle}}</a></h4>
-            <div class="description" title="items[0].Description">
-                {{items[0].ItemDescription.length > 30 ? items[0].ItemDescription.substr(0,30) + '...': items[0].ItemDescription}}
-            </div>
-            <div class="price" *ngFor="let item of items">                
-                <div class="desc pull-left">
-                    {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
+<!-- <div *ngFor="let itemType of itemTypes" > -->
+    <div *ngFor="let items of menuItems" class="col-md-4 col-sm-6">
+        <div class="product-col">
+            <div class="caption">
+                <h4><a href="product.html">{{items[0].ItemTitle}}</a></h4>
+                <div class="description" title="items[0].Description">
+                    {{items[0].ItemDescription.length > 30 ? items[0].ItemDescription.substr(0,30) + '...': items[0].ItemDescription}}
                 </div>
-                <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
-                <button class="pull-right btn btn-add" (click)="addToCart(item)"><i class="fa fa-plus"></i></button>
+                <div class="price" *ngFor="let item of items">
+                    <div class="desc pull-left">
+                        {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
+                    </div>
+                    <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
+                    <button class="pull-right btn btn-add" (click)="addToCart(item)"><i class="fa fa-plus"></i></button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->

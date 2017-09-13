@@ -55,7 +55,7 @@ var MenuItemsComponent = (function () {
     ;
     MenuItemsComponent.prototype.ngOnInit = function () {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
-        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(function (item) { return item.ItemTypeId !== 5; });
     };
     ;
     MenuItemsComponent.prototype.triggerScrollTo = function ($event, targetCategory) {

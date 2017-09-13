@@ -12,7 +12,7 @@ var MenuComponent = (function () {
     }
     ;
     MenuComponent.prototype.ngOnInit = function () {
-        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(function (item) { return item.ItemTypeId !== 5; });
     };
     ;
     MenuComponent.prototype.triggerScrollTo = function ($event, targetCategory) {

@@ -24,7 +24,7 @@ export class MenuItemsComponent implements OnInit {
 
     ngOnInit() {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
-        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(item => item.ItemTypeId !== 5);
     };
 
     groupBy = function (xs: MenuItem[], key: string): MenuItem[] {

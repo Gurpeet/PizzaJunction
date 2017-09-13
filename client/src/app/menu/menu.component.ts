@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(item => item.ItemTypeId !== 5);
     };
 
     onCartChange = function (cartItem: CartItem) {

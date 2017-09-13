@@ -15,7 +15,7 @@
             <!-- Categories Links Starts -->
             <h3 class="side-heading">Categories</h3>
             <div class="list-group">
-                <a (click)="triggerScrollTo($event, item.ItemTypeName)" class="list-group-item" *ngFor="let item of itemTypes">
+                <a (click)="triggerScrollTo($event, item.ItemTypeName)" class="list-group-item mouse-hover" *ngFor="let item of itemTypes">
                     <i class="fa fa-chevron-right"></i>{{item.ItemTypeName}}
                 </a>
             </div>

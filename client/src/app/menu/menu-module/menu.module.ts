@@ -18,7 +18,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ItemTypeResolver } from './../itemtype-resolver/itemtype-resolver.service';
 import { MenuItemsResolver } from './../menuitems-resolver/menuItems-resolver.service';
 
-//Pipes
+// Pipes
 import { SearchFilterPipe } from './../../shared/pipes/text-search.pipe';
 
 @NgModule({

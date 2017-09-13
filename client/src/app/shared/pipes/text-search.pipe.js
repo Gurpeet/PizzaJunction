@@ -6,9 +6,10 @@ var SearchFilterPipe = (function () {
     function SearchFilterPipe() {
     }
     SearchFilterPipe.prototype.transform = function (items, field, value) {
-        if (!items)
+        if (!items) {
             return [];
-        return items.filter(function (item) { return item.some(function (f) { return f[field] == value; }); });
+        }
+        return items.filter(function (item) { return item.some(function (f) { return f[field] === value; }); });
     };
     return SearchFilterPipe;
 }());

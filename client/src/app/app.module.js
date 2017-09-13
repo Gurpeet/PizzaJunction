@@ -19,7 +19,7 @@ var error404_component_1 = require("./error404/error404.component");
 var menu_service_1 = require("./shared/services/menu.service");
 var storage_service_1 = require("./shared/services/storage.service");
 var jwt_service_1 = require("./shared/services/jwt.service");
-//Pipes
+// Pipes
 // Models
 // Routing
 var routes_config_1 = require("./routes/routes.config");

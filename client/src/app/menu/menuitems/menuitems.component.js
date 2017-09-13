@@ -5,11 +5,13 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("./../../shared/services/storage.service");
 var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
+var menu_service_1 = require("./../../shared/services/menu.service");
 var MenuItemsComponent = (function () {
-    function MenuItemsComponent(route, storageService, _scrollToService) {
+    function MenuItemsComponent(route, storageService, _scrollToService, menuService) {
         this.route = route;
         this.storageService = storageService;
         this._scrollToService = _scrollToService;
+        this.menuService = menuService;
         this.groupBy = function (xs, key) {
             if (xs) {
                 var objItems_1 = xs.reduce(function (rv, x) {
@@ -40,12 +42,19 @@ var MenuItemsComponent = (function () {
             this.storageService.write('cartItems', cartItem);
             this.cartChanged.emit(cartItem);
         };
+        this.openToppings = function (numberOfToppings) {
+            // get toppings
+            // Hardcoding ToppingId for now
+            this.menuService.getItemsById(5)
+                .map(function (items) { return items; })
+                .subscribe(function (result) { return console.log(result); });
+            // Open popup with toppings
+        };
         this.cartChanged = new core_1.EventEmitter();
     }
     ;
     MenuItemsComponent.prototype.ngOnInit = function () {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
-        console.log(this.menuItems);
         this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
     };
     ;
@@ -53,9 +62,9 @@ var MenuItemsComponent = (function () {
         var config = {
             target: targetCategory.toString()
         };
-        console.log(config);
         this._scrollToService.scrollTo($event, config);
     };
+    ;
     return MenuItemsComponent;
 }());
 tslib_1.__decorate([
@@ -70,7 +79,8 @@ MenuItemsComponent = tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:paramtypes", [router_1.ActivatedRoute,
         storage_service_1.StorageService,
-        ngx_scroll_to_1.ScrollToService])
+        ngx_scroll_to_1.ScrollToService,
+        menu_service_1.MenuService])
 ], MenuItemsComponent);
 exports.MenuItemsComponent = MenuItemsComponent;
 //# sourceMappingURL=menuitems.component.js.map

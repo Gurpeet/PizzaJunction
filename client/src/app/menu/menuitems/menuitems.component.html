@@ -17,7 +17,7 @@
                         {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
                     </div>
                     <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
-                    <button class="pull-right btn btn-add" (click)="addToCart(item)"><i class="fa fa-plus"></i></button>
+                    <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(item.NumberOfToppings) : addToCart(item)"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>

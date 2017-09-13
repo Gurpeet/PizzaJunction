@@ -19,7 +19,7 @@ import { MenuService } from './shared/services/menu.service';
 import { StorageService } from './shared/services/storage.service';
 import { JWTService } from './shared/services/jwt.service';
 
-//Pipes
+// Pipes
 
 // Models
 

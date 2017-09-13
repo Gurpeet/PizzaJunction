@@ -13,7 +13,6 @@ var MenuComponent = (function () {
     ;
     MenuComponent.prototype.ngOnInit = function () {
         this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes;
-        console.log(this.itemTypes);
     };
     ;
     MenuComponent.prototype.triggerScrollTo = function ($event, targetCategory) {

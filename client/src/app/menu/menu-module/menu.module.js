@@ -20,7 +20,7 @@ var ng2_modal_1 = require("ng2-modal");
 var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
 var itemtype_resolver_service_1 = require("./../itemtype-resolver/itemtype-resolver.service");
 var menuItems_resolver_service_1 = require("./../menuitems-resolver/menuItems-resolver.service");
-//Pipes
+// Pipes
 var text_search_pipe_1 = require("./../../shared/pipes/text-search.pipe");
 var MenuModule = (function () {
     function MenuModule() {

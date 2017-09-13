@@ -53,6 +53,7 @@ var MenuItemsComponent = (function () {
         var config = {
             target: targetCategory.toString()
         };
+        console.log(config);
         this._scrollToService.scrollTo($event, config);
     };
     return MenuItemsComponent;

@@ -1,5 +1,11 @@
 <!-- <div *ngFor="let itemType of itemTypes" > -->
-    <div *ngFor="let items of menuItems" class="col-md-4 col-sm-6">
+<div *ngFor="let itemType of itemTypes" class="col-md-12 col-sm-12" id="{{itemType.ItemTypeName}}">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4>{{itemType.ItemTypeName}}</h4>
+        </div>
+    </div>
+    <div *ngFor="let items of menuItems | searchfilter: 'ItemTypeId' : itemType.ItemTypeId" class="col-md-4 col-sm-6">
         <div class="product-col">
             <div class="caption">
                 <h4><a href="product.html">{{items[0].ItemTitle}}</a></h4>
@@ -16,4 +22,7 @@
             </div>
         </div>
     </div>
+</div>
+
+
 <!-- </div> -->

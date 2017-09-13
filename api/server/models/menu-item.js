@@ -37,7 +37,7 @@ Menuitem.getItemTypes = function (cb) {
 
     Menuitem.getMenuItems = function (cb) {
         var ds = Menuitem.dataSource;
-        var sql = "EXEC [dbo].[GetMenuItems] @itemTypeId = 1";  //Executes sproc
+        var sql = "EXEC [dbo].[GetMenuItems] @itemTypeId = 1, @getAll = 1";  //Executes sproc
 
         ds.connector.query(sql, [], function (err, items) {
             if (err) {
@@ -52,9 +52,9 @@ Menuitem.getItemTypes = function (cb) {
         returns: { arg: 'GetMenuItems', type: 'string' }
     });
 
-    Menuitem.getItemById = function (id, cb) {
+    Menuitem.getItemById = function (id, getAll, cb) {
         var ds = Menuitem.dataSource;
-        var sql = "EXEC [dbo].[GetMenuItems] @itemTypeId = " + id;  //Executes sproc
+        var sql = "EXEC [dbo].[GetMenuItems] @itemTypeId = " + id + " @getAll = " + getAll;  //Executes sproc
 
         ds.connector.query(sql, [], function (err, items) {
             if (err) {
@@ -66,6 +66,7 @@ Menuitem.getItemTypes = function (cb) {
 
     Menuitem.remoteMethod('getItemById', {
         accepts: {arg: 'id', type: 'string'},
+        accepts: {arg: 'getAll', type: 'string'},
         http: { path: '/getItemById', verb: 'get' },
         returns: { arg: 'GetMenuItems', type: 'string' }
     });

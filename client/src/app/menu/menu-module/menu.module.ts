@@ -18,6 +18,9 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ItemTypeResolver } from './../itemtype-resolver/itemtype-resolver.service';
 import { MenuItemsResolver } from './../menuitems-resolver/menuItems-resolver.service';
 
+//Pipes
+import { SearchFilterPipe } from './../../shared/pipes/text-search.pipe';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -32,7 +35,8 @@ import { MenuItemsResolver } from './../menuitems-resolver/menuItems-resolver.se
         OrderSummaryComponent,
         CheckoutComponent,
         OrderConfirmation,
-        MenuDeliveryAddressComponent
+        MenuDeliveryAddressComponent,
+        SearchFilterPipe
     ],
     providers: [
         StorageService,

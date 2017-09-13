@@ -18,6 +18,9 @@ import { PageNotFoundComponent } from './error404/error404.component';
 import { MenuService } from './shared/services/menu.service';
 import { StorageService } from './shared/services/storage.service';
 import { JWTService } from './shared/services/jwt.service';
+
+//Pipes
+
 // Models
 
 // Routing
@@ -41,7 +44,6 @@ import { RouteConfig } from './routes/routes.config';
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent
-
   ],
   providers: [
     MenuService,

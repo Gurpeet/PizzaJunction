@@ -61,7 +61,7 @@ export class MenuItemsComponent implements OnInit {
         const config: ScrollToConfig = {
             target: targetCategory.toString()
         }
-
+console.log(config);
         this._scrollToService.scrollTo($event, config);
     }
 }

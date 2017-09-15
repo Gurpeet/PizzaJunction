@@ -18,6 +18,7 @@ var MenuComponent = (function () {
     MenuComponent.prototype.triggerScrollTo = function ($event, targetCategory) {
         this.menuItems.triggerScrollTo($event, targetCategory);
     };
+    ;
     return MenuComponent;
 }());
 tslib_1.__decorate([

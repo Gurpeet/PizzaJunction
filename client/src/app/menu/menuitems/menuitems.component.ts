@@ -1,9 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem, CartItem, ItemType } from './../../shared/models/menuitem';
 import { StorageService } from './../../shared/services/storage.service';
 import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
 import { MenuService } from './../../shared/services/menu.service';
+import { BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
     selector: 'menu-items',
@@ -13,18 +15,22 @@ import { MenuService } from './../../shared/services/menu.service';
 export class MenuItemsComponent implements OnInit {
     private menuItems: MenuItem[];
     private itemTypes: ItemType[];
+    private toppingsList: MenuItem[];
+    public modalRef: BsModalRef;
+
     @Output() cartChanged: EventEmitter<CartItem>;
 
     constructor(private route: ActivatedRoute,
         private storageService: StorageService,
-        private _scrollToService: ScrollToService,
-        private menuService: MenuService) {
+        private scrollToService: ScrollToService,
+        private menuService: MenuService,
+        private modalService: BsModalService) {
         this.cartChanged = new EventEmitter<CartItem>();
     };
 
     ngOnInit() {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
-        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(item => item.ItemTypeId !== 5);
+        this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter((item: any) => item.ItemTypeId !== 5);
     };
 
     groupBy = function (xs: MenuItem[], key: string): MenuItem[] {
@@ -58,19 +64,31 @@ export class MenuItemsComponent implements OnInit {
         this.cartChanged.emit(cartItem);
     };
 
-    openToppings = function (numberOfToppings: number) {
+    openToppings = function (toppingsModal: TemplateRef<any>, item: MenuItem) {
+        this.titleToppings = item.ItemTitle;
         // get toppings
-        // Hardcoding ToppingId for now
-        this.menuService.getItemsById(5)
-                            .map(items => items)
-                            .subscribe(result => console.log(result));
-        // Open popup with toppings
+        if (!this.toppingsList) {
+            this.menuService.getItemsById(5)        // Hardcoding ToppingId for now
+                .map((items: any) => items)
+                .subscribe((result: any) => {
+                    // Open popup with toppings
+                    this.toppingsList = result.GetMenuItems;
+                    this.openModel(toppingsModal);
+                });
+        } else {
+            // Open popup with toppings
+            this.openModel(toppingsModal);
+        }
     };
+
+    openModel = function (template: TemplateRef<any>) {
+        this.modalRef = this.modalService.show(template);
+    }
 
     public triggerScrollTo($event: Event, targetCategory: String) {
         const config: ScrollToConfig = {
             target: targetCategory.toString()
         };
-        this._scrollToService.scrollTo($event, config);
+        this.scrollToService.scrollTo($event, config);
     };
 }

@@ -17,12 +17,56 @@
                         {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
                     </div>
                     <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
-                    <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(item.NumberOfToppings) : addToCart(item)"><i class="fa fa-plus"></i></button>
+                    <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(toppingsModal, item) : addToCart(item)"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<ng-template #toppingsModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{titleToppings}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <ul *ngIf="toppingsList.length">
+            <li *ngFor="let item of toppingsList">{{item.ItemTitle}}</li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+    </div>
 
+
+
+
+    <!-- <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div *ngFor="let item of toppingsList" class="col-md-12 col-sm-12">
+            <h4><a>{{item.ItemTitle}}</a></h4> -->
+            <!-- <div class="desc pull-left">
+                {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
+            </div> -->
+            <!-- <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div> -->
+            <!-- <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(toppingsModal, item.NumberOfToppings) : addToCart(item)"><i class="fa fa-plus"></i></button> -->
+            <!-- <div class="price" *ngFor="let item of items">
+                        <div class="desc pull-left">
+                            {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
+                        </div>
+                        <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
+                        <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(toppingsModal, item.NumberOfToppings) : addToCart(item)"><i class="fa fa-plus"></i></button>
+                    </div> -->
+
+
+        <!-- </div>
+    </div> -->
+</ng-template>
 
 <!-- </div> -->

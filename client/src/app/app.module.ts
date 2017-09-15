@@ -6,6 +6,7 @@ import { CarouselModule } from 'ngx-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { RouteConfig } from './routes/routes.config';
     FormsModule,
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
+    ModalModule.forRoot(),
     RouterModule.forRoot(RouteConfig),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDQVCEwiDngg-HOyOD8-TskXQywkmCi-Rw'

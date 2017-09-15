@@ -11,6 +11,6 @@ export class SearchFilterPipe implements PipeTransform {
         if (!items) {
             return [];
         }
-        return items.filter(item => item.some(f => f[field] === value));
+        return items.filter(item => item.some((f: any) => f[field] === value));
     }
 }

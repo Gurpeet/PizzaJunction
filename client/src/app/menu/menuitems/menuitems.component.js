@@ -29,7 +29,7 @@ var MenuItemsComponent = (function () {
         this.addToCart = function (item) {
             var cartItem = this.storageService.read('cartItems');
             if (!cartItem) {
-                cartItem = { items: {}, totalQty: 0, totalPrice: 0 };
+                cartItem = { items: {}, totalQty: 0, totalPrice: 0, toppings: [] };
             }
             var items = cartItem.items;
             var storedItem = items[item.MenuItemId];
@@ -44,9 +44,14 @@ var MenuItemsComponent = (function () {
             this.storageService.write('cartItems', cartItem);
             this.cartChanged.emit(cartItem);
         };
-        this.openToppings = function (toppingsModal, item) {
+        this.openToppings = function (toppingsModal, item, resetToppings) {
             var _this = this;
+            this.menuItem = item;
             this.titleToppings = item.ItemTitle;
+            this.numberOfToppings = item.NumberOfToppings;
+            if (resetToppings) {
+                this.selectedToppings = [];
+            }
             // get toppings
             if (!this.toppingsList) {
                 this.menuService.getItemsById(5) // Hardcoding ToppingId for now
@@ -65,12 +70,30 @@ var MenuItemsComponent = (function () {
         this.openModel = function (template) {
             this.modalRef = this.modalService.show(template);
         };
+        this.addTopping = function (item) {
+            this.selectedToppings.push(item);
+        };
+        this.removeTopping = function (item) {
+            var index = this.selectedToppings.indexOf(item);
+            if (index !== -1) {
+                this.selectedToppings.splice(index, 1);
+            }
+        };
+        this.addToCartWithToppings = function () {
+            console.log(this.menuItem);
+            this.menuItem.toppings = this.selectedToppings;
+            this.addToCart(this.menuItem);
+            this.menuItem = [];
+            this.selectedToppings = [];
+            this.modalRef.hide();
+        };
         this.cartChanged = new core_1.EventEmitter();
     }
     ;
     MenuItemsComponent.prototype.ngOnInit = function () {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
         this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter(function (item) { return item.ItemTypeId !== 5; });
+        this.selectedToppings = [];
     };
     ;
     MenuItemsComponent.prototype.triggerScrollTo = function ($event, targetCategory) {

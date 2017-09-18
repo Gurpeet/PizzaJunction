@@ -16,7 +16,10 @@ export class MenuItemsComponent implements OnInit {
     private menuItems: MenuItem[];
     private itemTypes: ItemType[];
     private toppingsList: MenuItem[];
+    private numberOfTopping: number;
     public modalRef: BsModalRef;
+    private selectedToppings: MenuItem[];
+    private menuItem: MenuItem;
 
     @Output() cartChanged: EventEmitter<CartItem>;
 
@@ -31,6 +34,7 @@ export class MenuItemsComponent implements OnInit {
     ngOnInit() {
         this.menuItems = this.groupBy(this.route.snapshot.data['menuItems'].GetMenuItems, 'ItemId');
         this.itemTypes = this.route.snapshot.data['itemTypes'].GetItemTypes.filter((item: any) => item.ItemTypeId !== 5);
+        this.selectedToppings = [];
     };
 
     groupBy = function (xs: MenuItem[], key: string): MenuItem[] {
@@ -48,7 +52,7 @@ export class MenuItemsComponent implements OnInit {
     addToCart = function (item: MenuItem) {
         let cartItem = this.storageService.read('cartItems');
         if (!cartItem) {
-            cartItem = { items: {}, totalQty: 0, totalPrice: 0 };
+            cartItem = { items: {}, totalQty: 0, totalPrice: 0, toppings: [] };
         }
         let items = cartItem.items;
         let storedItem = items[item.MenuItemId];
@@ -64,8 +68,13 @@ export class MenuItemsComponent implements OnInit {
         this.cartChanged.emit(cartItem);
     };
 
-    openToppings = function (toppingsModal: TemplateRef<any>, item: MenuItem) {
+    openToppings = function (toppingsModal: TemplateRef<any>, item: MenuItem, resetToppings: boolean) {
+        this.menuItem = item;
         this.titleToppings = item.ItemTitle;
+        this.numberOfToppings = item.NumberOfToppings;
+        if (resetToppings) {
+            this.selectedToppings = [];
+        }
         // get toppings
         if (!this.toppingsList) {
             this.menuService.getItemsById(5)        // Hardcoding ToppingId for now
@@ -82,8 +91,28 @@ export class MenuItemsComponent implements OnInit {
     };
 
     openModel = function (template: TemplateRef<any>) {
-        this.modalRef = this.modalService.show(template);
-    }
+        this.modalRef = this.modalService.show(template);   
+    };
+
+    addTopping = function (item: MenuItem) {
+        this.selectedToppings.push(item);
+    };
+
+    removeTopping = function (item: MenuItem) {
+        const index = this.selectedToppings.indexOf(item);
+        if (index !== -1) {
+            this.selectedToppings.splice(index, 1);
+        }
+    };
+
+    addToCartWithToppings = function () {
+        console.log(this.menuItem);
+        this.menuItem.toppings = this.selectedToppings;
+        this.addToCart(this.menuItem);
+        this.menuItem = [];
+        this.selectedToppings = [];
+        this.modalRef.hide()
+    };
 
     public triggerScrollTo($event: Event, targetCategory: String) {
         const config: ScrollToConfig = {

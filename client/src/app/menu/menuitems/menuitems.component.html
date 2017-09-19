@@ -1,13 +1,11 @@
 <div *ngFor="let itemType of itemTypes" class="col-md-12 col-sm-12" id="{{itemType.ItemTypeName}}">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <h4>{{itemType.ItemTypeName}}</h4>
-        </div>
+    <div class="col-md-12 col-sm-12">
+        <h4>{{itemType.ItemTypeName}}</h4>
     </div>
     <div *ngFor="let items of menuItems | searchfilter: 'ItemTypeId' : itemType.ItemTypeId" class="col-md-4 col-sm-6">
         <div class="product-col">
             <div class="caption">
-                <h4><a href="product.html">{{items[0].ItemTitle}}</a></h4>
+                <h4><a>{{items[0].ItemTitle}}</a></h4>
                 <div class="description" title="items[0].Description">
                     {{items[0].ItemDescription.length > 30 ? items[0].ItemDescription.substr(0,30) + '...': items[0].ItemDescription}}
                 </div>
@@ -16,7 +14,7 @@
                         {{item.Size}}{{item.MetricType == "Inches" ? "\"" : ""}} {{item.Description}}
                     </div>
                     <div class="amount pull-left">{{item.ItemPrice | currency:'USD':true}}</div>
-                    <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(toppingsModal, item, true) : addToCart(item)"><i class="fa fa-plus"></i></button>
+                    <button class="pull-right btn btn-add" (click)="item.NumberOfToppings ? openToppings(item, true) : addToCart(item)"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
@@ -48,7 +46,7 @@
             <li *ngFor="let item of toppingsList" class="mouse-hover modal-header" (click)="addTopping(item)">Topping: {{item.ItemTitle}}</li>
         </ul>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" *ngIf="!isEditToppings">
         <button type="button" class="btn btn-default" (click)="addToCartWithToppings()">Add Item</button>
     </div>
 </ng-template>

@@ -53,6 +53,7 @@ var OrderSummaryComponent = (function () {
         };
         this.getToppings = function (item, objModal) {
             var _this = this;
+            //To be called as getToppings(item.item, toppingModal);
             this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
                 (item.Size ? item.Size : '') +
                 (item.MetricType === 'Inches' ? '\" ' : ' ') +
@@ -62,12 +63,15 @@ var OrderSummaryComponent = (function () {
                 objModal.open();
             });
         };
+        this.editTopping = function (item) {
+            this.editToppings.emit(item);
+        };
         this.closeToppings = function (objModal) {
             objModal.close();
         };
         this.addTopping = function (item) {
-            console.log(item);
         };
+        this.editToppings = new core_1.EventEmitter();
     }
     OrderSummaryComponent.prototype.ngOnInit = function () {
         this.cartDetails = this.storageService.read('cartItems');
@@ -84,6 +88,10 @@ tslib_1.__decorate([
     core_1.Input(),
     tslib_1.__metadata("design:type", Object)
 ], OrderSummaryComponent.prototype, "cartDetails", void 0);
+tslib_1.__decorate([
+    core_1.Output(),
+    tslib_1.__metadata("design:type", core_1.EventEmitter)
+], OrderSummaryComponent.prototype, "editToppings", void 0);
 OrderSummaryComponent = tslib_1.__decorate([
     core_1.Component({
         selector: 'order-summary',

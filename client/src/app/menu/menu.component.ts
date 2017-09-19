@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CartItem, ItemType } from './../shared/models/menuitem';
+import { CartItem, ItemType, MenuItem } from './../shared/models/menuitem';
 
 @Component({
     templateUrl: './menu.component.html'
@@ -21,6 +21,10 @@ export class MenuComponent implements OnInit {
     onCartChange = function (cartItem: CartItem) {
         this.cartItem = cartItem;
     };
+
+    onEditItem = function (item: MenuItem) {
+        this.menuItems.editTopping(item);
+    }
 
     public triggerScrollTo($event: Event, targetCategory: String) {
         this.menuItems.triggerScrollTo($event, targetCategory);

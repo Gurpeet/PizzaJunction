@@ -9,6 +9,9 @@ var MenuComponent = (function () {
         this.onCartChange = function (cartItem) {
             this.cartItem = cartItem;
         };
+        this.onEditItem = function (item) {
+            this.menuItems.editTopping(item);
+        };
     }
     ;
     MenuComponent.prototype.ngOnInit = function () {

@@ -16,8 +16,8 @@
                             *ngIf="item.qty > 1"></i> {{item.qty}} X {{item.item.ItemTitle}}, {{item.item.Size}}{{item.item.MetricType
                         == "Inches" ? "\"" : ""}} {{item.item.Description}}
                         <i *ngIf="item.item.NumberOfToppings > 0" class="fa fa-pencil-square pointer" aria-hidden="true" title="Extra Toppings"
-                            (click)="getToppings(item.item, toppingModal);"></i>
-                        <ul *ngIf="item.item.toppings.length" class="list-unstyled">
+                            (click)="editTopping(item.item)"></i>
+                        <ul *ngIf="item.item.toppings && item.item.toppings.length" class="list-unstyled">
                             <li *ngFor="let topping of item.item.toppings">
                                 Topping: {{topping.ItemTitle}}
                             </li>

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { StorageService } from './../../shared/services/storage.service';
-import { CartItem } from './../../shared/models/menuitem';
+import { MenuItem, CartItem } from './../../shared/models/menuitem';
 import { Address } from './../../shared/models/address.model';
 import {
     Globals,
@@ -22,6 +22,7 @@ import { Modal } from 'ng2-modal';
 })
 export class OrderSummaryComponent implements OnInit {
     @Input() cartDetails: CartItem;
+    @Output() editToppings: EventEmitter<MenuItem>;
     private deliveryFee: number = 0;
     private order_Type: number = 0;
     itemName: number;
@@ -31,10 +32,12 @@ export class OrderSummaryComponent implements OnInit {
     order_Types: any = orderType;
     payment_Mode: any = paymentMode;
     toppingItems: any;
+
     constructor(private storageService: StorageService,
         private globals: Globals,
         private router: Router,
         private menuService: MenuService) {
+        this.editToppings = new EventEmitter<MenuItem>();
     }
 
     ngOnInit() {
@@ -83,6 +86,7 @@ export class OrderSummaryComponent implements OnInit {
     };
 
     getToppings = function (item: any, objModal: Modal) {
+        //To be called as getToppings(item.item, toppingModal);
         this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
             (item.Size ? item.Size : '') +
             (item.MetricType === 'Inches' ? '\" ' : ' ') +
@@ -93,11 +97,15 @@ export class OrderSummaryComponent implements OnInit {
         });
     };
 
+    editTopping = function(item: MenuItem){
+        this.editToppings.emit(item);
+    };
+
     closeToppings = function (objModal: Modal) {
         objModal.close();
     };
 
     addTopping = function (item: any) {
-        console.log(item);
+        
     };
 }

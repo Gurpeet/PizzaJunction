@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <order-summary [cartDetails]="cartItem"></order-summary>
+            <order-summary [cartDetails]="cartItem" (editToppings)="onEditItem($event)"></order-summary>
             <delivery-address></delivery-address>
             <!-- Categories Links Starts -->
             <h3 class="side-heading">Categories</h3>
@@ -24,6 +24,5 @@
                 <a href="app/menu/brochure/brochure.pdf" target="_blank" class="list-group-item"><i class="brochure fa fa-file-pdf-o fa-2x"></i>Click to Download</a>
             </div>
         </div>
-
     </div>
 </div>

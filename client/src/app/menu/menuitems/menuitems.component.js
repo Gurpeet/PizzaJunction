@@ -14,6 +14,7 @@ var MenuItemsComponent = (function () {
         this.scrollToService = scrollToService;
         this.menuService = menuService;
         this.modalService = modalService;
+        this.isEditToppings = false;
         this.groupBy = function (xs, key) {
             if (xs) {
                 var objItems_1 = xs.reduce(function (rv, x) {
@@ -33,8 +34,10 @@ var MenuItemsComponent = (function () {
             }
             var items = cartItem.items;
             var storedItem = items[item.MenuItemId];
+            console.log(items);
+            console.log(storedItem);
             if (!storedItem) {
-                storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0 };
+                storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0, cartId: this.cartId };
             }
             storedItem.qty++;
             storedItem.price = storedItem.item.ItemPrice * storedItem.qty;
@@ -44,7 +47,7 @@ var MenuItemsComponent = (function () {
             this.storageService.write('cartItems', cartItem);
             this.cartChanged.emit(cartItem);
         };
-        this.openToppings = function (toppingsModal, item, resetToppings) {
+        this.openToppings = function (item, resetToppings) {
             var _this = this;
             this.menuItem = item;
             this.titleToppings = item.ItemTitle;
@@ -59,16 +62,16 @@ var MenuItemsComponent = (function () {
                     .subscribe(function (result) {
                     // Open popup with toppings
                     _this.toppingsList = result.GetMenuItems;
-                    _this.openModel(toppingsModal);
+                    _this.openModel();
                 });
             }
             else {
                 // Open popup with toppings
-                this.openModel(toppingsModal);
+                this.openModel();
             }
         };
         this.openModel = function (template) {
-            this.modalRef = this.modalService.show(template);
+            this.modalRef = this.modalService.show(this.toppingsModel);
         };
         this.addTopping = function (item) {
             this.selectedToppings.push(item);
@@ -80,7 +83,6 @@ var MenuItemsComponent = (function () {
             }
         };
         this.addToCartWithToppings = function () {
-            console.log(this.menuItem);
             this.menuItem.toppings = this.selectedToppings;
             this.addToCart(this.menuItem);
             this.menuItem = [];
@@ -103,12 +105,26 @@ var MenuItemsComponent = (function () {
         this.scrollToService.scrollTo($event, config);
     };
     ;
+    MenuItemsComponent.prototype.editTopping = function (item) {
+        //Open popup, set toppings
+        this.isEditToppings = true;
+        this.selectedToppings = item.toppings;
+        this.openToppings(item, false);
+    };
     return MenuItemsComponent;
 }());
+tslib_1.__decorate([
+    core_1.Input(),
+    tslib_1.__metadata("design:type", Object)
+], MenuItemsComponent.prototype, "editToppings", void 0);
 tslib_1.__decorate([
     core_1.Output(),
     tslib_1.__metadata("design:type", core_1.EventEmitter)
 ], MenuItemsComponent.prototype, "cartChanged", void 0);
+tslib_1.__decorate([
+    core_1.ViewChild('toppingsModal'),
+    tslib_1.__metadata("design:type", Object)
+], MenuItemsComponent.prototype, "toppingsModel", void 0);
 MenuItemsComponent = tslib_1.__decorate([
     core_1.Component({
         selector: 'menu-items',

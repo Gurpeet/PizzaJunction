@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem, CartItem, ItemType } from './../../shared/models/menuitem';
 import { StorageService } from './../../shared/services/storage.service';
@@ -20,8 +20,12 @@ export class MenuItemsComponent implements OnInit {
     public modalRef: BsModalRef;
     private selectedToppings: MenuItem[];
     private menuItem: MenuItem;
+    private cartId: number;
+    private isEditToppings: boolean = false;
 
+    @Input() editToppings: MenuItem;
     @Output() cartChanged: EventEmitter<CartItem>;
+    @ViewChild('toppingsModal') toppingsModel: any;
 
     constructor(private route: ActivatedRoute,
         private storageService: StorageService,
@@ -56,8 +60,10 @@ export class MenuItemsComponent implements OnInit {
         }
         let items = cartItem.items;
         let storedItem = items[item.MenuItemId];
+        console.log(items);
+        console.log(storedItem);
         if (!storedItem) {
-            storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0 };
+            storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0, cartId: this.cartId };
         }
         storedItem.qty++;
         storedItem.price = storedItem.item.ItemPrice * storedItem.qty;
@@ -68,7 +74,7 @@ export class MenuItemsComponent implements OnInit {
         this.cartChanged.emit(cartItem);
     };
 
-    openToppings = function (toppingsModal: TemplateRef<any>, item: MenuItem, resetToppings: boolean) {
+    openToppings = function (item: MenuItem, resetToppings: boolean) {
         this.menuItem = item;
         this.titleToppings = item.ItemTitle;
         this.numberOfToppings = item.NumberOfToppings;
@@ -82,16 +88,16 @@ export class MenuItemsComponent implements OnInit {
                 .subscribe((result: any) => {
                     // Open popup with toppings
                     this.toppingsList = result.GetMenuItems;
-                    this.openModel(toppingsModal);
+                    this.openModel();
                 });
         } else {
             // Open popup with toppings
-            this.openModel(toppingsModal);
+            this.openModel();
         }
     };
 
     openModel = function (template: TemplateRef<any>) {
-        this.modalRef = this.modalService.show(template);   
+        this.modalRef = this.modalService.show(this.toppingsModel);
     };
 
     addTopping = function (item: MenuItem) {
@@ -106,12 +112,11 @@ export class MenuItemsComponent implements OnInit {
     };
 
     addToCartWithToppings = function () {
-        console.log(this.menuItem);
         this.menuItem.toppings = this.selectedToppings;
         this.addToCart(this.menuItem);
         this.menuItem = [];
         this.selectedToppings = [];
-        this.modalRef.hide()
+        this.modalRef.hide();
     };
 
     public triggerScrollTo($event: Event, targetCategory: String) {
@@ -120,4 +125,11 @@ export class MenuItemsComponent implements OnInit {
         };
         this.scrollToService.scrollTo($event, config);
     };
+
+    public editTopping(item: MenuItem) {
+        //Open popup, set toppings
+        this.isEditToppings = true;
+        this.selectedToppings = item.toppings;
+        this.openToppings(item, false);
+    }
 }

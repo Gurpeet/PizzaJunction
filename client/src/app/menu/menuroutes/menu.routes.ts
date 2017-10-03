@@ -7,6 +7,6 @@ import { DeliveryAddressResolver } from './../../delivery-address/delivery-addre
 
 export const MenuRoutes = [
     { path: '', component: MenuComponent, resolve: { menuItems: MenuItemsResolver, itemTypes: ItemTypeResolver } },
-    { path: 'checkout', component: CheckoutComponent, resolve: {states: DeliveryAddressResolver }},
-    { path: 'confirmation', component: OrderConfirmation}
+    { path: 'checkout', component: CheckoutComponent, resolve: { states: DeliveryAddressResolver } },
+    { path: 'confirmation', component: OrderConfirmation }
 ];

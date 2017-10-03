@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../shared/services/storage.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Globals, orderType, discountPercent, paymentMode } from './../../shared/components/globals/global';
@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit {
     address: any = {};
     order_Type: number;
     payment_mode: number = paymentMode.PayNow;
-    constructor(private storageService: StorageService, private globals: Globals, private route: ActivatedRoute) {
+    constructor(private storageService: StorageService, private globals: Globals, private route: ActivatedRoute, private router: Router) {
 
     }
 
@@ -52,4 +52,9 @@ export class CheckoutComponent implements OnInit {
             };
         }
     };
+
+    placeOrder = function () {
+        //Save Order and redirect
+        this.router.navigate(['/menu/confirmation']);
+    }
 }

@@ -11,7 +11,6 @@ import { Address } from './../../shared/models/address.model';
 export class OrderConfirmation implements OnInit {
     private cartDetails: CartItem;
     private deliveryAddress: Address;
-    private deliveryFee: number = 0;
     paymentModes: any = paymentMode;
     discount_Percent: number = discountPercent;
     address: any = {};
@@ -25,10 +24,10 @@ export class OrderConfirmation implements OnInit {
     ngOnInit() {
         this.cartDetails = <CartItem>this.storageService.read('cartItems');
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
-        this.orderNumber = 'Dummy001';      //TODO: Change it to order number 
-        this.order_Type = this.deliveryAddress ? 
-                            (this.deliveryAddress.OrderType == orderType.Delivery ? "Delivery" : "Pickup") : 
-                            "Delivery";
+        this.orderNumber = 'Dummy001';      // TODO: Change it to order number 
+        this.order_Type = this.deliveryAddress ?
+                            (this.deliveryAddress.OrderType == orderType.Delivery ? 'Delivery' : 'Pickup') :
+                            'Delivery';
     }
 
  }

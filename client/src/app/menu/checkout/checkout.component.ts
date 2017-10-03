@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
     };
 
     placeOrder = function () {
-        //Save Order and redirect
+        // Save Order and redirect
         this.router.navigate(['/menu/confirmation']);
-    }
+    };
 }

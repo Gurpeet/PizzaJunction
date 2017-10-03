@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
 
     onEditItem = function (item: MenuItem) {
         this.menuItems.editTopping(item);
-    }
+    };
 
     public triggerScrollTo($event: Event, targetCategory: String) {
         this.menuItems.triggerScrollTo($event, targetCategory);

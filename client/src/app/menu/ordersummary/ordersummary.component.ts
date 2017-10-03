@@ -86,7 +86,7 @@ export class OrderSummaryComponent implements OnInit {
     };
 
     getToppings = function (item: any, objModal: Modal) {
-        //To be called as getToppings(item.item, toppingModal);
+        // To be called as getToppings(item.item, toppingModal);
         this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
             (item.Size ? item.Size : '') +
             (item.MetricType === 'Inches' ? '\" ' : ' ') +
@@ -106,6 +106,5 @@ export class OrderSummaryComponent implements OnInit {
     };
 
     addTopping = function (item: any) {
-        
     };
 }

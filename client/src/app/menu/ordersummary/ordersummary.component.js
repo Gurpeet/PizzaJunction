@@ -53,7 +53,7 @@ var OrderSummaryComponent = (function () {
         };
         this.getToppings = function (item, objModal) {
             var _this = this;
-            //To be called as getToppings(item.item, toppingModal);
+            // To be called as getToppings(item.item, toppingModal);
             this.itemName = (item.ItemTitle.length > 30 ? item.ItemTitle.substr(0, 30) + '...' : item.ItemTitle) +
                 (item.Size ? item.Size : '') +
                 (item.MetricType === 'Inches' ? '\" ' : ' ') +

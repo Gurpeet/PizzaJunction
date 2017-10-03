@@ -8,7 +8,7 @@ export interface MenuItem {
     MetricType?: string;
     Description?: string;
     NumberOfToppings?: number;
-    toppings?: MenuItem[]
+    toppings?: MenuItem[];
 };
 
 export interface CartItem {

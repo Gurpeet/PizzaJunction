@@ -34,8 +34,6 @@ var MenuItemsComponent = (function () {
             }
             var items = cartItem.items;
             var storedItem = items[item.MenuItemId];
-            console.log(items);
-            console.log(storedItem);
             if (!storedItem) {
                 storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0, cartId: this.cartId };
             }

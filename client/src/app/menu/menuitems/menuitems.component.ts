@@ -60,8 +60,6 @@ export class MenuItemsComponent implements OnInit {
         }
         let items = cartItem.items;
         let storedItem = items[item.MenuItemId];
-        console.log(items);
-        console.log(storedItem);
         if (!storedItem) {
             storedItem = items[item.MenuItemId] = { item: item, qty: 0, price: 0, cartId: this.cartId };
         }

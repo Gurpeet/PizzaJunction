@@ -3,7 +3,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="panel panel-smart">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Thank you for your order</h3>
+                    <h2 class="panel-title">Thank you. Your order has been placed, please wait for store representative to accept it.</h2>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Delivery Address: </label>
+                        <label class="col-sm-4 control-label"> {{(order_Type == 'Delivery') ? 'Delivery Address:' : 'PickUp By:'}} </label>
                         <div class="col-sm-8"></div>
                     </div>
                     <div class="form-group">
@@ -40,7 +40,7 @@
                             {{ deliveryAddress.Phone }}
                         </div>
                     </div>
-                    <span ng-if="order_Type == 'Delivery'">
+                    <span *ngIf="order_Type == 'Delivery'">
                         <div class="form-group">
                             <label class="col-sm-4 control-label"></label>
                             <div class="col-sm-8">
@@ -71,7 +71,7 @@
                                 {{ deliveryAddress.Country }}
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label class="col-sm-4 control-label"></label>
                             <div class="col-sm-8">
                                 {{ deliveryAddress.Zip }}

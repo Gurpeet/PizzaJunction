@@ -6,29 +6,28 @@
     "validateUpsert": true
   },
   "properties": {
-    "Title": {
-      "type": "string",
-      "required": true
-    },
-    "Description": {
+    "UserId": {
       "type": "string"
     },
-    "ItemId": {
+    "DeliveryMode": {
+      "type": "string"
+    },
+    "PaymentMode": {
       "type": "number"
     },
-    "Price": {
+    "OrderStatus": {
       "type": "string"
     },
-    "Size": {
+    "OrderDate": {
       "type": "string"
     },
-    "SizeDescription": {
+    "OrderDetails": {
       "type": "string"
     },
-    "Metric": {
+    "OrderPrice": {
       "type": "string"
     },
-    "Toppings": {
+    "Status": {
       "type": "number"
     }
   },

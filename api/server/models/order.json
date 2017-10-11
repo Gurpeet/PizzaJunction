@@ -1,0 +1,39 @@
+{
+  "name": "Order",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "string"
+    },
+    "ItemId": {
+      "type": "number"
+    },
+    "Price": {
+      "type": "string"
+    },
+    "Size": {
+      "type": "string"
+    },
+    "SizeDescription": {
+      "type": "string"
+    },
+    "Metric": {
+      "type": "string"
+    },
+    "Toppings": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

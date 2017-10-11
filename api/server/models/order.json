@@ -6,17 +6,20 @@
     "validateUpsert": true
   },
   "properties": {
+    "OrderId": {
+      "type": "number"
+    },
     "UserId": {
-      "type": "string"
+      "type": "number"
     },
     "DeliveryMode": {
-      "type": "string"
+      "type": "number"
     },
     "PaymentMode": {
       "type": "number"
     },
     "OrderStatus": {
-      "type": "string"
+      "type": "number"
     },
     "OrderDate": {
       "type": "string"

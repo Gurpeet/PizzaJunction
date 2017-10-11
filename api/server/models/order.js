@@ -20,16 +20,15 @@ module.exports = function (Order) {
     });
 
     Order.add = function (order, cb) {
+        var ds = Order.dataSource;
         //Code to save address
-
         var sql = "EXEC [dbo].[AddOrder] @UserId = '" + order.UserId +
             "', @DeliveryModeId = '" + order.DeliveryMode +
             "', @PaymentModeId  = '" + order.PaymentMode +
             "', @OrderStatusId  = '" + order.OrderStatus +
             "', @OrderDate = '" + order.OrderDate +
             "', @OrderDetails = '" + order.OrderDetails +
-            "', @OrderPrice = '" + order.OrderPrice +
-            "', @Status = '" + order.Status + "'";
+            "', @OrderPrice = '" + order.OrderPrice + "'";
 
         ds.connector.query(sql, [], function (err, items) {
             if (err) {

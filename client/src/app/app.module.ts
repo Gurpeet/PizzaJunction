@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './error404/error404.component';
 import { MenuService } from './shared/services/menu.service';
 import { StorageService } from './shared/services/storage.service';
 import { JWTService } from './shared/services/jwt.service';
+import { OrderService } from './shared/services/order.service';
 
 // Pipes
 
@@ -49,6 +50,7 @@ import { RouteConfig } from './routes/routes.config';
   ],
   providers: [
     MenuService,
+    OrderService,
     StorageService,
     {
       provide: HTTP_INTERCEPTORS,

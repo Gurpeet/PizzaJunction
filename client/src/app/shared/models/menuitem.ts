@@ -21,3 +21,14 @@ export interface ItemType {
     ItemTypeId: number;
     ItemTypeName: string;
 };
+
+export interface Order {
+    OrderId?: number
+    UserId?: number;
+    DeliveryMode?: number;
+    PaymentMode?: number;
+    OrderStatus?: number;
+    OrderDate?: Date;
+    OrderDetails?: string;
+    OrderPrice?: string;
+}

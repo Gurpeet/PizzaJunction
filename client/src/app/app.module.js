@@ -20,6 +20,7 @@ var error404_component_1 = require("./error404/error404.component");
 var menu_service_1 = require("./shared/services/menu.service");
 var storage_service_1 = require("./shared/services/storage.service");
 var jwt_service_1 = require("./shared/services/jwt.service");
+var order_service_1 = require("./shared/services/order.service");
 // Pipes
 // Models
 // Routing
@@ -52,6 +53,7 @@ AppModule = tslib_1.__decorate([
         ],
         providers: [
             menu_service_1.MenuService,
+            order_service_1.OrderService,
             storage_service_1.StorageService,
             {
                 provide: http_1.HTTP_INTERCEPTORS,

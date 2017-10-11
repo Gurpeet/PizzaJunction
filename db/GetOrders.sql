@@ -21,7 +21,6 @@ BEGIN
 			  ,[OrderDate]
 			  ,[OrderDetails]
 			  ,[OrderPrice]
-			  ,[Status]
 		  FROM [dbo].[Order]
 END
 GO

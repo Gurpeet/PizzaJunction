@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../shared/services/storage.service';
+import { OrderService } from './../../shared/services/order.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Globals, orderType, discountPercent, paymentMode } from './../../shared/components/globals/global';
 import { Address } from './../../shared/models/address.model';
@@ -18,7 +19,11 @@ export class CheckoutComponent implements OnInit {
     address: any = {};
     order_Type: number;
     payment_mode: number = paymentMode.PayNow;
-    constructor(private storageService: StorageService, private globals: Globals, private route: ActivatedRoute, private router: Router) {
+    constructor(private storageService: StorageService,
+        private globals: Globals,
+        private route: ActivatedRoute,
+        private router: Router,
+        private orderService: OrderService) {
 
     }
 
@@ -55,6 +60,30 @@ export class CheckoutComponent implements OnInit {
 
     placeOrder = function () {
         // Save Order and redirect
-        this.router.navigate(['/menu/confirmation']);
+        //Create order object and send for save
+
+        let order = {
+            UserId: 1,       //Dummy for now
+            DeliveryModeId: this.order_Type,
+            PaymentModeId: this.payment_mode,        //TODO: need to replace after payment integration
+            OrderStatusId: 3,       //Hardcoding for now(Recieved)
+            OrderDate: new Date(),
+            OrderDetails: this.cartDetails,
+            OrderPrice: this.cartDetails.totalPrice
+        };
+
+        this.orderService.save(order)
+            .map((items: any) => items)
+            .subscribe((result: any) => {
+                console.log(result);
+                this.router.navigate(['/menu/confirmation']);
+            });
+            //Use below code to display all order in the list
+        // this.orderService.getOrders()
+        //     .map((items: any) => items)
+        //     .subscribe((result: any) => {
+        //         console.log(result);
+        //         //this.router.navigate(['/menu/confirmation']);
+        //     });
     };
 }

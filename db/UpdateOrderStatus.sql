@@ -15,7 +15,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 	UPDATE [dbo].[Order]
-	SET [Status] = @Status
+	SET [OrderStatusId] = @Status
 	WHERE [OrderId] = @OrderId
 END
 GO

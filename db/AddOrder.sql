@@ -15,8 +15,7 @@ CREATE PROCEDURE AddOrder
 	@OrderStatusId int,
 	@OrderDate datetime,
 	@OrderDetails nvarchar(MAX),
-	@OrderPrice decimal(18, 2),
-	@Status int
+	@OrderPrice decimal(18, 2)
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -28,8 +27,7 @@ BEGIN
            ,[OrderStatusId]
            ,[OrderDate]
            ,[OrderDetails]
-           ,[OrderPrice]
-           ,[Status])
+           ,[OrderPrice])
      VALUES
            (@UserId
            ,@DeliveryModeId
@@ -37,8 +35,7 @@ BEGIN
            ,@OrderStatusId
            ,@OrderDate
            ,@OrderDetails
-           ,@OrderPrice
-           ,@Status)
+           ,@OrderPrice)
 
 END
 GO

@@ -20,6 +20,7 @@ var ng2_modal_1 = require("ng2-modal");
 var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
 var itemtype_resolver_service_1 = require("./../itemtype-resolver/itemtype-resolver.service");
 var menuItems_resolver_service_1 = require("./../menuitems-resolver/menuItems-resolver.service");
+var order_list_component_1 = require("./../../menu/order-list/order-list.component");
 // Pipes
 var text_search_pipe_1 = require("./../../shared/pipes/text-search.pipe");
 var MenuModule = (function () {
@@ -40,6 +41,7 @@ MenuModule = tslib_1.__decorate([
             menu_component_1.MenuComponent,
             menuitems_component_1.MenuItemsComponent,
             ordersummary_component_1.OrderSummaryComponent,
+            order_list_component_1.OrderListComponent,
             checkout_component_1.CheckoutComponent,
             order_confirmation_component_1.OrderConfirmation,
             menu_delivery_address_component_1.MenuDeliveryAddressComponent,

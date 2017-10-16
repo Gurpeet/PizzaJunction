@@ -17,6 +17,7 @@ import { ModalModule } from 'ng2-modal';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ItemTypeResolver } from './../itemtype-resolver/itemtype-resolver.service';
 import { MenuItemsResolver } from './../menuitems-resolver/menuItems-resolver.service';
+import { OrderListComponent } from './../../menu/order-list/order-list.component';
 
 // Pipes
 import { SearchFilterPipe } from './../../shared/pipes/text-search.pipe';
@@ -33,6 +34,7 @@ import { SearchFilterPipe } from './../../shared/pipes/text-search.pipe';
         MenuComponent,
         MenuItemsComponent,
         OrderSummaryComponent,
+        OrderListComponent,
         CheckoutComponent,
         OrderConfirmation,
         MenuDeliveryAddressComponent,

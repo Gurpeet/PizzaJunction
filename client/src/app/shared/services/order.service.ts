@@ -25,6 +25,11 @@ export class OrderService {
     save(order: Order): Observable<any>{
         return this.http.post(apiPath + 'Orders/add', {order: order})
             .catch(this.errorMethod);
+    };
+
+    acceptOrder(orderId: number, orderStatusId: boolean): any {
+        return this.http.put(apiPath+ 'Orders/acceptOrder', {orderId: orderId, orderStatusId: orderStatusId})
+        .catch(this.errorMethod);
     }
 
     errorMethod(error: Response) {

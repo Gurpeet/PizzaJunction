@@ -44,6 +44,26 @@ module.exports = function (Order) {
         returns: { arg: 'Result', type: 'string' }
     });
 
+    Order.acceptOrder = function (order, cb) {
+        var ds = Order.dataSource;
+        //Code to save address
+        var sql = "EXEC [dbo].[AcceptOrder] @OrderId = '" + order.orderId +
+            "', @OrderStatusId = '" + order.orderStatusId + "'";
+
+        ds.connector.query(sql, [], function (err, items) {
+            if (err) {
+                console.error(err);     //handle error
+            }
+            cb(err, items);
+        });
+    };
+
+    Order.remoteMethod('acceptOrder', {
+        accepts: { arg: 'order', type: 'object' },
+        http: { path: '/acceptOrder', verb: 'put' },
+        returns: { arg: 'Result', type: 'string' }
+    });
+
 
     //Hides all unnecessary endpoints
     Order.disableRemoteMethodByName('create');				// Removes (POST) 

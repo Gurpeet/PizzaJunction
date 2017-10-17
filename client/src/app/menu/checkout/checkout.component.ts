@@ -75,7 +75,7 @@ export class CheckoutComponent implements OnInit {
         this.orderService.save(order)
             .map((items: any) => items)
             .subscribe((result: any) => {
-                console.log(result);
+                this.storageService.clear();            //Order succesfully placed, clear from local cache
                 this.router.navigate(['/menu/confirmation']);
             });
             //Use below code to display all order in the list

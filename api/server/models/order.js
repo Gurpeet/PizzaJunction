@@ -21,15 +21,16 @@ module.exports = function (Order) {
 
     Order.add = function (order, cb) {
         var ds = Order.dataSource;
+console.log(order);
         //Code to save address
-        var sql = "EXEC [dbo].[AddOrder] @UserId = '" + order.UserId +
-            "', @DeliveryModeId = '" + order.DeliveryMode +
-            "', @PaymentModeId  = '" + order.PaymentMode +
-            "', @OrderStatusId  = '" + order.OrderStatus +
-            "', @OrderDate = '" + order.OrderDate +
+        var sql = "EXEC [dbo].[AddOrder] @UserId = " + parseInt(order.UserId) +
+            ", @DeliveryModeId = " + parseInt(order.DeliveryModeId) +
+            ", @PaymentModeId  = " + parseInt(order.PaymentModeId) +
+            ", @OrderStatusId  = " + parseInt(order.OrderStatusId) +
+            ", @OrderDate = '" + order.OrderDate +
             "', @OrderDetails = '" + order.OrderDetails +
             "', @OrderPrice = '" + order.OrderPrice + "'";
-
+console.log(sql);
         ds.connector.query(sql, [], function (err, items) {
             if (err) {
                 console.error(err);     //handle error

@@ -42,7 +42,7 @@
       'rxjs': 'npm:rxjs',
       "ng2-modal": "node_modules/ng2-modal",
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-
+      'primeng': 'npm:primeng'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -83,6 +83,9 @@
       "ng2-modal": { 
         main: "index.js", 
         "defaultExtension": "js"
+      },
+      "primeng": {
+          defaultExtension: 'js'
       }
     }
   });

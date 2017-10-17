@@ -1,3 +1,32 @@
-<div *ngFor="let order of ordersList">
+<!-- <div *ngFor="let order of ordersList">
     {{order.OrderDetails}}
-</div>
+</div>  -->
+<section class="products-list">
+    <!-- Heading Starts -->
+    <h2 class="product-head">Orders</h2>
+</section>
+<p-dataTable [value]="ordersList">
+    <p-column field="OrderId" header="Order #"></p-column>
+    <p-column field="OrderPrice" header="Customer"></p-column>
+    <p-column field="DeliveryAddress" header="Delivery Address"></p-column>
+    <p-column field="Distance" header="Distance"></p-column>
+    <p-column field="OrderStatusId" header="OrderType"></p-column>
+    <p-column field="PaymentModeId" header="Payment Mode"></p-column>
+    <!-- <p-column field="DeliveryTime" header="Delivery Time"></p-column> -->
+    <p-column header="# Items">
+        <ng-template let-order="rowData" pTemplate="body">
+            {{ parseToJSON(order.OrderDetails).items.totalQty }}
+        </ng-template>
+    </p-column>
+    <p-column header="Amount">
+        <ng-template let-order="rowData" pTemplate="body">
+            {{ order.OrderPrice | currency:'USD':true }}
+        </ng-template>
+    </p-column>
+    <p-column header="Actions">
+        <ng-template let-order="rowData" pTemplate="body">
+            <button type="button" pButton (click)="acceptOrder(order)">Accept</button>
+            <button type="button" pButton (click)="rejectOrder(order)">Reject</button>
+        </ng-template>
+    </p-column>
+</p-dataTable>

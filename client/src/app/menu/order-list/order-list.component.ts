@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './../../shared/services/order.service';
 import { Order } from './../../shared/models/menuitem';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
 
 @Component({
     selector: 'order-list',
@@ -17,6 +18,19 @@ export class OrderListComponent implements OnInit {
             .map((items: any) => items)
             .subscribe((response: any) => {
                 this.ordersList = response.GetOrders;
+                console.log(this.ordersList);
             });
+    }
+
+    acceptOrder(order: Order){
+        console.log(order);
+    }
+
+    rejectOrder(order: Order){
+        console.log(order);
+    }
+
+    parseToJSON(val: string){
+        return JSON.parse(val);
     }
 }

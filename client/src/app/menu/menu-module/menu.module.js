@@ -21,6 +21,7 @@ var ngx_scroll_to_1 = require("@nicky-lenaers/ngx-scroll-to");
 var itemtype_resolver_service_1 = require("./../itemtype-resolver/itemtype-resolver.service");
 var menuItems_resolver_service_1 = require("./../menuitems-resolver/menuItems-resolver.service");
 var order_list_component_1 = require("./../../menu/order-list/order-list.component");
+var primeng_1 = require("primeng/primeng");
 // Pipes
 var text_search_pipe_1 = require("./../../shared/pipes/text-search.pipe");
 var MenuModule = (function () {
@@ -34,6 +35,8 @@ MenuModule = tslib_1.__decorate([
             common_1.CommonModule,
             forms_1.FormsModule,
             ng2_modal_1.ModalModule,
+            primeng_1.DataTableModule,
+            primeng_1.SharedModule,
             ngx_scroll_to_1.ScrollToModule.forRoot(),
             router_1.RouterModule.forChild(menu_routes_1.MenuRoutes)
         ],

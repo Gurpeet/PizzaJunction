@@ -15,7 +15,7 @@
     <!-- <p-column field="DeliveryTime" header="Delivery Time"></p-column> -->
     <p-column header="# Items">
         <ng-template let-order="rowData" pTemplate="body">
-            {{ parseToJSON(order.OrderDetails).items.totalQty }}
+            {{ parseToJSON(order.OrderDetails).totalQty }}
         </ng-template>
     </p-column>
     <p-column header="Amount">

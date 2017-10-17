@@ -45,7 +45,7 @@ module.exports = function (Order) {
             ", @PaymentModeId  = " + parseInt(order.PaymentModeId) +
             ", @OrderStatusId  = " + parseInt(order.OrderStatusId) +
             ", @OrderDate = '" + order.OrderDate +
-            "', @OrderDetails = '" + JSON.stringify(order.OrderDetails) +
+            "', @OrderDetails = '" + order.OrderDetails +
             "', @OrderPrice = '" + order.OrderPrice + "'";
 
         ds.connector.query(sql, [], function (err, items) {

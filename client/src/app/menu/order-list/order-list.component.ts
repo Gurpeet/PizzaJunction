@@ -18,7 +18,6 @@ export class OrderListComponent implements OnInit {
             .map((items: any) => items)
             .subscribe((response: any) => {
                 this.ordersList = response.GetOrders;
-                console.log(this.ordersList);
             });
     }
 

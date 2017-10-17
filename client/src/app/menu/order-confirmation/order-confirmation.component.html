@@ -9,13 +9,14 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Order Number: </label>
                         <div class="col-sm-8">
-                            {{ orderNumber }}
+                            {{ order.OrderId }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Total Charges: </label>
                         <div class="col-sm-8">
-                            {{ globals.getTotalAmount(cartDetails, deliveryFee) | currency:'USD': true}}
+                            {{ order.OrderPrice | currency:'USD': true }}
+                            <!-- {{ globals.getTotalAmount(cartDetails, deliveryFee) | currency:'USD': true}} -->
                         </div>
                     </div>
                     <div class="form-group">

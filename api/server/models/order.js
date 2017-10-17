@@ -2,6 +2,24 @@
 
 module.exports = function (Order) {
 
+    Order.getOrder = function(orderId, cb){
+        var ds = Order.dataSource;
+        var sql = "EXEC [dbo].[GetOrder] @OrderId = " + orderId;  //Executes sproc
+
+        ds.connector.query(sql, [], function (err, items) {
+            if (err) {
+                console.error(err);     //handle error
+            }
+            cb(err, items);
+        });
+    };
+    Order.remoteMethod('getOrder', {
+        accepts: { arg: 'orderId', type: 'number' },
+        http: { path: '/getOrder', verb: 'get' },
+        returns: { arg: 'GetOrder', type: 'string' }
+    });
+
+
     Order.getOrders = function (cb) {
         var ds = Order.dataSource;
         var sql = "EXEC [dbo].[GetOrders]";  //Executes sproc
@@ -21,16 +39,15 @@ module.exports = function (Order) {
 
     Order.add = function (order, cb) {
         var ds = Order.dataSource;
-console.log(order);
         //Code to save address
         var sql = "EXEC [dbo].[AddOrder] @UserId = " + parseInt(order.UserId) +
             ", @DeliveryModeId = " + parseInt(order.DeliveryModeId) +
             ", @PaymentModeId  = " + parseInt(order.PaymentModeId) +
             ", @OrderStatusId  = " + parseInt(order.OrderStatusId) +
             ", @OrderDate = '" + order.OrderDate +
-            "', @OrderDetails = '" + order.OrderDetails +
+            "', @OrderDetails = '" + JSON.stringify(order.OrderDetails) +
             "', @OrderPrice = '" + order.OrderPrice + "'";
-console.log(sql);
+
         ds.connector.query(sql, [], function (err, items) {
             if (err) {
                 console.error(err);     //handle error

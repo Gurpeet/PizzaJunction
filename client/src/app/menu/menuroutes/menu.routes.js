@@ -10,7 +10,7 @@ var order_list_component_1 = require("./../order-list/order-list.component");
 exports.MenuRoutes = [
     { path: '', component: menu_component_1.MenuComponent, resolve: { menuItems: menuItems_resolver_service_1.MenuItemsResolver, itemTypes: itemtype_resolver_service_1.ItemTypeResolver } },
     { path: 'checkout', component: checkout_component_1.CheckoutComponent, resolve: { states: delivery_address_resolver_1.DeliveryAddressResolver } },
-    { path: 'confirmation', component: order_confirmation_component_1.OrderConfirmation },
+    { path: 'confirmation/:id', component: order_confirmation_component_1.OrderConfirmation },
     { path: 'order-list', component: order_list_component_1.OrderListComponent }
 ];
 //# sourceMappingURL=menu.routes.js.map

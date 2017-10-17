@@ -61,29 +61,21 @@ export class CheckoutComponent implements OnInit {
     placeOrder = function () {
         // Save Order and redirect
         //Create order object and send for save
-
         let order = {
             UserId: 0,       //Dummy for now
             DeliveryModeId: parseInt(this.order_Type),
             PaymentModeId: parseInt(this.payment_mode),        //TODO: need to replace after payment integration
             OrderStatusId: 3,       //Hardcoding for now(Recieved)
             OrderDate: new Date(),
-            OrderDetails: this.cartDetails,
-            OrderPrice: this.cartDetails.totalPrice
+            OrderDetails: JSON.stringify(this.cartDetails),
+            OrderPrice: this.globals.getTotalAmount(this.cartDetails, this.deliveryFee)
         };
 
         this.orderService.save(order)
             .map((items: any) => items)
             .subscribe((result: any) => {
                 this.storageService.clear();            //Order succesfully placed, clear from local cache
-                this.router.navigate(['/menu/confirmation']);
+                this.router.navigate(['/menu/confirmation', result.Result[0].OrderId]);
             });
-            //Use below code to display all order in the list
-        // this.orderService.getOrders()
-        //     .map((items: any) => items)
-        //     .subscribe((result: any) => {
-        //         console.log(result);
-        //         //this.router.navigate(['/menu/confirmation']);
-        //     });
     };
 }

@@ -9,6 +9,6 @@ import { OrderListComponent } from './../order-list/order-list.component';
 export const MenuRoutes = [
     { path: '', component: MenuComponent, resolve: { menuItems: MenuItemsResolver, itemTypes: ItemTypeResolver } },
     { path: 'checkout', component: CheckoutComponent, resolve: { states: DeliveryAddressResolver } },
-    { path: 'confirmation', component: OrderConfirmation },
+    { path: 'confirmation/:id', component: OrderConfirmation },
     { path: 'order-list', component: OrderListComponent }
 ];

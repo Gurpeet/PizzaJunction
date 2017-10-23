@@ -10,6 +10,7 @@ exports.defaultState = 'British Columbia';
 exports.defaultCountry = 'Canada';
 exports.orderType = { 'Delivery': 1, 'Pickup': 2 };
 exports.paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
+exports.orderStatus = { 'InProcess': 1, 'Complete': 2, 'Received': 3, 'Rejected': 4, 'All': -1 };
 exports.minOrderAmount = 15;
 exports.discountPercent = 0; // discout will be in percent
 var GSTAmount = 5;
@@ -61,6 +62,10 @@ var Globals = (function () {
         else {
             return -1;
         }
+    };
+    ;
+    Globals.prototype.parseToJSON = function (val) {
+        return JSON.parse(val);
     };
     ;
     return Globals;

@@ -10,36 +10,37 @@
     <div class="col-sm-12">
         <div class="btn-group btn-group-horizontal" data-toggle="buttons">
             <label class="btn ">
-                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="1" (change)="filterOrders()">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderFilter" value="1" (change)="filterOrders()">
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span>  In Process</span>
             </label>
             <label class="btn">
-                <input type="radio" [(ngModel)]="orderStatus" name="radOrderType" value="2" (change)="filterOrders()">
+                <input type="radio" [(ngModel)]="orderFilter" name="radOrderType" value="2" (change)="filterOrders()">
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span> Completed</span>
             </label>
             <label class="btn ">
-                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="3" (change)="filterOrders()">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderFilter" value="3" (change)="filterOrders()">
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span>  Received</span>
             </label>
             <label class="btn ">
-                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="4" (change)="filterOrders()">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderFilter" value="4" (change)="filterOrders()">
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span>  Rejected</span>
             </label>
             <label class="btn ">
-                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="-1" (change)="filterOrders()">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderFilter" value="-1" (change)="filterOrders()">
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span>  All</span>
             </label>
         </div>
     </div>
     <div class="col-sm-12">
-        <p-dataTable [value]="ordersList">
-            <p-column field="OrderId" header="Order #" item-width="40"></p-column>
-            <p-column field="OrderPrice" header="Price"></p-column>
+        <p-dataTable [value]="ordersList" sortField="OrderDate" sortOrder="-1">
+            <p-column field="OrderId" header="Order #" ></p-column>
+            <!-- <p-column field="OrderDate" header="Order Date" hidden="true"></p-column> -->
+            <!-- <p-column field="OrderPrice" header="Price"></p-column> -->
             <!-- <p-column field="DeliveryAddress" header="Delivery Address"></p-column> -->
             <!-- <p-column field="Distance" header="Distance"></p-column> -->
             <!-- <p-column field="OrderStatusId" header="OrderType"></p-column> -->
@@ -47,7 +48,7 @@
             <!-- <p-column field="DeliveryTime" header="Delivery Time"></p-column> -->
             <p-column header="# Items">
                 <ng-template let-order="rowData" pTemplate="body">
-                    {{ parseToJSON(order.OrderDetails).totalQty }}
+                    {{ globals.parseToJSON(order.OrderDetails).totalQty }}
                 </ng-template>
             </p-column>
             <p-column header="Amount">
@@ -58,9 +59,9 @@
             <p-column header="Actions">
                 <ng-template let-order="rowData" pTemplate="body">
                     <span *ngIf="order && order.OrderStatusId == 3">
-                <button type="button" pButton (click)="acceptOrder(order)">Accept</button>
-                <button type="button" pButton (click)="rejectOrder(order)">Reject</button>
-            </span>
+                        <button type="button" pButton (click)="acceptOrder(order)">Accept</button>
+                        <button type="button" pButton (click)="rejectOrder(order)">Reject</button>
+                    </span>
                     <button type="button" *ngIf="order && order.OrderStatusId == 1" pButton (click)="completeOrder(order)">Click when order ready</button>
                     <span *ngIf="order && order.OrderStatusId == 2">Completed</span>
                     <span *ngIf="order && order.OrderStatusId == 4">Rejected</span>
@@ -69,3 +70,4 @@
         </p-dataTable>
     </div>
 </div>
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './../../shared/services/order.service';
 import { Order } from './../../shared/models/menuitem';
+import { Globals, orderStatus } from './../../shared/components/globals/global';
 
 @Component({
     selector: 'order-list',
@@ -9,14 +10,14 @@ import { Order } from './../../shared/models/menuitem';
 export class OrderListComponent implements OnInit {
     private ordersList: Order[];
     private ordersListCopy: Order[];
-    orderStatus: number;
+    orderFilter: number;
 
-    constructor(private orderService: OrderService) {
+    constructor(private orderService: OrderService, private globals: Globals) {
     }
 
     ngOnInit() {
         this.getAllOrders();
-        this.orderStatus = '5';     // It is not taking numeric, verify and fix later
+        this.orderFilter = orderStatus.All.toString();     // It is not taking numeric, verify and fix later
     };
 
     getAllOrders() {
@@ -26,22 +27,19 @@ export class OrderListComponent implements OnInit {
                 this.ordersList = this.ordersListCopy = response.GetOrders;
             });
     };
-    // InProcess = 1
-    // Complete = 2
-    // Received = 3
-    // Rejected = 4
+    
     acceptOrder(order: Order) {
-        order.OrderStatusId = 1;
+        order.OrderStatusId = orderStatus.InProcess;
         this.updateOrder(order);
     };
 
     rejectOrder(order: Order) {
-        order.OrderStatusId = 4;
+        order.OrderStatusId = orderStatus.Rejected;
         this.updateOrder(order);
     };
 
     completeOrder(order: Order) {
-        order.OrderStatusId = 2;
+        order.OrderStatusId = orderStatus.Complete;
         this.updateOrder(order);
     }
 
@@ -54,14 +52,12 @@ export class OrderListComponent implements OnInit {
     };
 
     filterOrders() {
-        if (this.orderStatus == -1) {
+        if (this.orderFilter == orderStatus.All) {
             this.ordersList = this.ordersListCopy;
         } else {
-            this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == this.orderStatus);
+            this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == this.orderFilter);
         }
     };
 
-    parseToJSON(val: string) {
-        return JSON.parse(val);
-    }
+    
 }

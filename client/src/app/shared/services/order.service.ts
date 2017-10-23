@@ -27,8 +27,8 @@ export class OrderService {
             .catch(this.errorMethod);
     };
 
-    acceptOrder(orderId: number, orderStatusId: boolean): any {
-        return this.http.put(apiPath + 'Orders/acceptOrder', { orderId: orderId, orderStatusId: orderStatusId })
+    acceptOrder(order: Order): any {
+        return this.http.put(apiPath + 'Orders/acceptOrder', { order: order })
             .catch(this.errorMethod);
     };
 

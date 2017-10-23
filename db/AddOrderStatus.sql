@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[OrderStatus] ([OrderStatusName]) VALUES ('Rejected')

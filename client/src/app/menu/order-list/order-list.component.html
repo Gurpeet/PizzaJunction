@@ -7,10 +7,10 @@
 </section>
 <p-dataTable [value]="ordersList">
     <p-column field="OrderId" header="Order #"></p-column>
-    <p-column field="OrderPrice" header="Customer"></p-column>
-    <p-column field="DeliveryAddress" header="Delivery Address"></p-column>
-    <p-column field="Distance" header="Distance"></p-column>
-    <p-column field="OrderStatusId" header="OrderType"></p-column>
+    <p-column field="OrderPrice" header="Price"></p-column>
+    <!-- <p-column field="DeliveryAddress" header="Delivery Address"></p-column> -->
+    <!-- <p-column field="Distance" header="Distance"></p-column> -->
+    <!-- <p-column field="OrderStatusId" header="OrderType"></p-column> -->
     <p-column field="PaymentModeId" header="Payment Mode"></p-column>
     <!-- <p-column field="DeliveryTime" header="Delivery Time"></p-column> -->
     <p-column header="# Items">
@@ -25,8 +25,13 @@
     </p-column>
     <p-column header="Actions">
         <ng-template let-order="rowData" pTemplate="body">
-            <button type="button" pButton (click)="acceptOrder(order)">Accept</button>
-            <button type="button" pButton (click)="rejectOrder(order)">Reject</button>
+            <span *ngIf="order && order.OrderStatusId == 3">
+                <button type="button" pButton (click)="acceptOrder(order)">Accept</button>
+                <button type="button" pButton (click)="rejectOrder(order)">Reject</button>
+            </span>
+            <button type="button" *ngIf="order && order.OrderStatusId == 1" pButton (click)="completeOrder(order)">Click when order ready</button>
+            <span *ngIf="order && order.OrderStatusId == 2">Completed</span>
+            <span *ngIf="order && order.OrderStatusId == 4">Rejected</span>
         </ng-template>
     </p-column>
 </p-dataTable>

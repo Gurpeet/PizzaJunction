@@ -65,8 +65,8 @@ module.exports = function (Order) {
     Order.acceptOrder = function (order, cb) {
         var ds = Order.dataSource;
         //Code to save address
-        var sql = "EXEC [dbo].[AcceptOrder] @OrderId = '" + order.orderId +
-            "', @OrderStatusId = '" + order.orderStatusId + "'";
+        var sql = "EXEC [dbo].[AcceptOrder] @OrderId = '" + parseInt(order.OrderId) +
+            "', @OrderStatusId = '" + parseInt(order.OrderStatus) + "'";
 
         ds.connector.query(sql, [], function (err, items) {
             if (err) {

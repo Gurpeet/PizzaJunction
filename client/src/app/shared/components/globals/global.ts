@@ -45,7 +45,7 @@ export class Globals {
 
     getTotalAmount = function (cartDetails: any, deliveryFee: number) {
         if (!cartDetails) {
-            return 0
+            return 0;
         };
         return ((cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) ?
             (cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) : 0);

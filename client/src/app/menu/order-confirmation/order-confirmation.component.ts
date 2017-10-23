@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from './../../shared/services/storage.service';
 import { OrderService } from './../../shared/services/order.service';
-import { CartItem, Order } from './../../shared/models/menuitem';
+import { Order } from './../../shared/models/menuitem';
 import { Globals, orderType, discountPercent, paymentMode } from './../../shared/components/globals/global';
 import { Address } from './../../shared/models/address.model';
 
@@ -30,7 +30,7 @@ export class OrderConfirmation implements OnInit {
             .subscribe((response: any) => {
                 this.order = response.GetOrder[0];
             });
-        
+
         this.deliveryAddress = <Address>this.storageService.read('deliveryAddress');
         this.order_Type = this.deliveryAddress ?
             (this.deliveryAddress.OrderType == orderType.Delivery ? 'Delivery' : 'Pickup') :

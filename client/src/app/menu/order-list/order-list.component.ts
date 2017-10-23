@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './../../shared/services/order.service';
 import { Order } from './../../shared/models/menuitem';
-import { DataTableModule } from 'primeng/primeng';
 
 @Component({
     selector: 'order-list',
@@ -10,14 +9,14 @@ import { DataTableModule } from 'primeng/primeng';
 export class OrderListComponent implements OnInit {
     private ordersList: Order[];
     private ordersListCopy: Order[];
-    orderStatus: number;        //selected All by default
+    orderStatus: number;
 
     constructor(private orderService: OrderService) {
     }
 
     ngOnInit() {
         this.getAllOrders();
-        this.orderStatus = '5';
+        this.orderStatus = '5';     // It is not taking numeric, verify and fix later
     };
 
     getAllOrders() {

@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
         // Save Order and redirect
         // Create order object and send for save
         let order = {
-            UserId: 0,       //Dummy for now
+            UserId: 0,       // Dummy for now
             DeliveryModeId: this.order_Type,
             PaymentModeId: this.payment_mode,        // TODO: need to replace after payment integration
             OrderStatusId: 3,       // Hardcoding for now(Recieved)

@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pizza Junction</title>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="/app/common/font-awesome/css/font-awesome.min.css">
-    <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
 
-    <!-- Polyfills -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="systemjs.config.js"></script>
-    <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
-    <script>
-      System.import('./main.js').catch(function(err){ console.error(err); }); 
-    </script>
-  </head>
+<head>
+  <title>Pizza Junction</title>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/primeng.min.css" />
+  <link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/themes/omega/theme.css" /> 
 
-  <body>
-    <my-app><!-- Site content --></my-app> 
-  </body>
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/app/common/font-awesome/css/font-awesome.min.css">
+  <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
+
+  <!-- Polyfills -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="systemjs.config.js"></script>
+  <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
+  <script>
+    System.import('./main.js').catch(function (err) { console.error(err); });
+  </script>
+</head>
+
+<body>
+  <my-app>
+    <!-- Site content -->
+  </my-app>
+</body>
+
 </html>

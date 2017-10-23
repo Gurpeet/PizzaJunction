@@ -23,11 +23,11 @@ export interface ItemType {
 };
 
 export interface Order {
-    OrderId?: number
+    OrderId?: number;
     UserId?: number;
     DeliveryMode?: number;
     PaymentMode?: number;
-    OrderStatus?: number;
+    OrderStatusId?: number;
     OrderDate?: Date;
     OrderDetails?: string;
     OrderPrice?: string;

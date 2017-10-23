@@ -10,7 +10,7 @@ export const defaultStateId = 1;
 export const defaultState = 'British Columbia';
 export const defaultCountry = 'Canada';
 export const orderType = { 'Delivery': 1, 'Pickup': 2 };
-export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3};
+export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
 export const minOrderAmount = 15;
 export const discountPercent = 0;     // discout will be in percent
 
@@ -44,7 +44,9 @@ export class Globals {
     };
 
     getTotalAmount = function (cartDetails: any, deliveryFee: number) {
-        if(!cartDetails) return 0;
+        if (!cartDetails) {
+            return 0
+        };
         return ((cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) ?
             (cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) : 0);
     };
@@ -58,7 +60,7 @@ export class Globals {
             (GSTAmount * cartDetails.totalPrice / 100) : 0);
     };
 
-    getNetPayable = function(totalAmount: number){
+    getNetPayable = function (totalAmount: number) {
         return (totalAmount - this.getDiscountedAmount(totalAmount));
     };
 }

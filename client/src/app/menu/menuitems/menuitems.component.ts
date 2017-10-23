@@ -125,7 +125,7 @@ export class MenuItemsComponent implements OnInit {
     };
 
     public editTopping(item: MenuItem) {
-        //Open popup, set toppings
+        // Open popup, set toppings
         this.isEditToppings = true;
         this.selectedToppings = item.toppings;
         this.openToppings(item, false);

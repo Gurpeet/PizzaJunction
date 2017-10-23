@@ -5,6 +5,40 @@
     <!-- Heading Starts -->
     <h2 class="product-head">Orders</h2>
 </section>
+
+<div class="form-group">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+        <div class="btn-group btn-group-horizontal" data-toggle="buttons">
+            <label class="btn ">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="1" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span>  In Process</span>
+            </label>
+            <label class="btn">
+                <input type="radio" [(ngModel)]="orderStatus" name="radOrderType" value="2" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span> Completed</span>
+            </label>
+            <label class="btn ">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="3" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span>  Received</span>
+            </label>
+            <label class="btn ">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="4" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span>  Rejected</span>
+            </label>
+            <label class="btn ">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderStatus" value="-1" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span>  All</span>
+            </label>
+        </div>
+    </div>
+</div>
+
 <p-dataTable [value]="ordersList">
     <p-column field="OrderId" header="Order #"></p-column>
     <p-column field="OrderPrice" header="Price"></p-column>

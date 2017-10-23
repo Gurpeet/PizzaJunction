@@ -104,7 +104,7 @@ var MenuItemsComponent = (function () {
     };
     ;
     MenuItemsComponent.prototype.editTopping = function (item) {
-        //Open popup, set toppings
+        // Open popup, set toppings
         this.isEditToppings = true;
         this.selectedToppings = item.toppings;
         this.openToppings(item, false);

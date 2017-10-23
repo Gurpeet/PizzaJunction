@@ -23,8 +23,10 @@ var Globals = (function () {
             return arr;
         };
         this.getTotalAmount = function (cartDetails, deliveryFee) {
-            if (!cartDetails)
+            if (!cartDetails) {
                 return 0;
+            }
+            ;
             return ((cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) ?
                 (cartDetails.totalPrice + deliveryFee + (GSTAmount * cartDetails.totalPrice / 100)) : 0);
         };

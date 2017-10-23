@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './../../shared/services/order.service';
 import { Order } from './../../shared/models/menuitem';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { DataTableModule } from 'primeng/primeng';
 
 @Component({
     selector: 'order-list',
@@ -9,20 +9,22 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
 })
 export class OrderListComponent implements OnInit {
     private ordersList: Order[];
+    private ordersListCopy: Order[];
+    orderStatus: number;        //selected All by default
 
     constructor(private orderService: OrderService) {
-
     }
 
     ngOnInit() {
         this.getAllOrders();
+        this.orderStatus = '5';
     };
 
-    getAllOrders(){
+    getAllOrders() {
         this.orderService.getOrders()
             .map((items: any) => items)
             .subscribe((response: any) => {
-                this.ordersList = response.GetOrders;
+                this.ordersList = this.ordersListCopy = response.GetOrders;
             });
     };
     // InProcess = 1
@@ -30,17 +32,17 @@ export class OrderListComponent implements OnInit {
     // Received = 3
     // Rejected = 4
     acceptOrder(order: Order) {
-        order.OrderStatus = 1;
+        order.OrderStatusId = 1;
         this.updateOrder(order);
     };
 
     rejectOrder(order: Order) {
-        order.OrderStatus = 4;
+        order.OrderStatusId = 4;
         this.updateOrder(order);
     };
 
     completeOrder(order: Order) {
-        order.OrderStatus = 2;
+        order.OrderStatusId = 2;
         this.updateOrder(order);
     }
 
@@ -50,6 +52,14 @@ export class OrderListComponent implements OnInit {
             .subscribe((response: any) => {
                 this.getAllOrders();
             });
+    };
+
+    filterOrders() {
+        if (this.orderStatus == -1) {
+            this.ordersList = this.ordersListCopy;
+        } else {
+            this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == this.orderStatus);
+        }
     };
 
     parseToJSON(val: string) {

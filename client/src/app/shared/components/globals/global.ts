@@ -68,4 +68,20 @@ export class Globals {
     parseToJSON(val: string) {
         return JSON.parse(val);
     };
+
+    getPaymentMode(mode: number) {
+        let modeStr = '';
+        switch (mode) {
+            case paymentMode.CashOnDelivery:
+                modeStr = 'Cash On Delivery';
+                break;
+            case paymentMode.PayInStore:
+                modeStr = 'Pay In Store';
+                break;
+            case paymentMode.PayNow:
+                modeStr = 'Pay Now';
+                break;
+        }
+        return modeStr;
+    };
 }

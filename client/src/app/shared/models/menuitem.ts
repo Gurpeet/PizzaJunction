@@ -31,4 +31,6 @@ export interface Order {
     OrderDate?: Date;
     OrderDetails?: string;
     OrderPrice?: string;
+    BillingAddress?: string;
+    DeliveryAddress?: string;
 }

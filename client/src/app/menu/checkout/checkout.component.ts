@@ -5,6 +5,7 @@ import { OrderService } from './../../shared/services/order.service';
 import { CartItem } from './../../shared/models/menuitem';
 import { Globals, orderType, discountPercent, paymentMode } from './../../shared/components/globals/global';
 import { Address } from './../../shared/models/address.model';
+import 'rxjs/add/operator/catch';
 
 @Component({
     templateUrl: './checkout.component.html'
@@ -68,7 +69,9 @@ export class CheckoutComponent implements OnInit {
             OrderStatusId: 3,       // Hardcoding for now(Recieved)
             OrderDate: new Date(),
             OrderDetails: JSON.stringify(this.cartDetails),
-            OrderPrice: this.globals.getTotalAmount(this.cartDetails, this.deliveryFee)
+            OrderPrice: this.globals.getTotalAmount(this.cartDetails, this.deliveryFee),
+            BillingAddress: JSON.stringify(this.address),
+            DeliveryAddress: JSON.stringify(this.deliveryAddress)
         };
 
         this.orderService.save(order)
@@ -76,6 +79,9 @@ export class CheckoutComponent implements OnInit {
             .subscribe((result: any) => {
                 this.storageService.clear();            // Order succesfully placed, clear from local cache
                 this.router.navigate(['/menu/confirmation', result.Result[0].OrderId]);
+            },
+            (err: any) => {
+                // TODO: give error message for exception
             });
     };
 }

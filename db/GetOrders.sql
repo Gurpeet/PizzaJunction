@@ -21,6 +21,8 @@ BEGIN
 			  ,[OrderDate]
 			  ,[OrderDetails]
 			  ,[OrderPrice]
+			  ,[DeliveryAddress]
+			  ,[BillingAddress]
 		  FROM [dbo].[Order]
 END
 GO

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './../../shared/services/order.service';
 import { Order } from './../../shared/models/menuitem';
+import { Address } from './../../shared/models/address.model';
 import { Globals, orderStatus } from './../../shared/components/globals/global';
 
 @Component({
@@ -42,7 +43,7 @@ export class OrderListComponent implements OnInit {
     completeOrder(order: Order) {
         order.OrderStatusId = orderStatus.Complete;
         this.updateOrder(order);
-    }
+    };
 
     updateOrder(order: Order) {
         this.orderService.acceptOrder(order)
@@ -62,5 +63,27 @@ export class OrderListComponent implements OnInit {
         }
     };
 
+    getCustomer(deliveryAddress: string) {
+        if (!deliveryAddress) {
+            return '';
+        }
+        let addr = this.globals.parseToJSON(deliveryAddress);
+        return addr.Name + ' ' + addr.Phone;
+    };
 
+    getAddress(deliveryAddress: string) {
+       if (!deliveryAddress) {
+            return '';
+        }
+        let addr = this.globals.parseToJSON(deliveryAddress);
+        return addr.Street + ', ' + addr.Appartment + ', ' + addr.City + ', ' + addr.State + ', ' + addr.Zip;
+    };
+
+    getDistance(deliveryAddress: string) {
+        if (!deliveryAddress) {
+            return '';
+        }
+        let addr = this.globals.parseToJSON(deliveryAddress);
+        return addr.Distance + ' KM' ;
+    };
 }

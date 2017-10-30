@@ -68,6 +68,22 @@ var Globals = (function () {
         return JSON.parse(val);
     };
     ;
+    Globals.prototype.getPaymentMode = function (mode) {
+        var modeStr = '';
+        switch (mode) {
+            case exports.paymentMode.CashOnDelivery:
+                modeStr = 'Cash On Delivery';
+                break;
+            case exports.paymentMode.PayInStore:
+                modeStr = 'Pay In Store';
+                break;
+            case exports.paymentMode.PayNow:
+                modeStr = 'Pay Now';
+                break;
+        }
+        return modeStr;
+    };
+    ;
     return Globals;
 }());
 exports.Globals = Globals;

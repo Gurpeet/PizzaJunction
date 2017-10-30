@@ -10,14 +10,14 @@ import { Globals, orderStatus } from './../../shared/components/globals/global';
 export class OrderListComponent implements OnInit {
     private ordersList: Order[];
     private ordersListCopy: Order[];
-    orderFilter: number;
+    orderFilter: string;
 
     constructor(private orderService: OrderService, private globals: Globals) {
     }
 
     ngOnInit() {
         this.getAllOrders();
-        this.orderFilter = orderStatus.All.toString();     // It is not taking numeric, verify and fix later
+        this.orderFilter = orderStatus.All.toString();
     };
 
     getAllOrders() {
@@ -52,10 +52,10 @@ export class OrderListComponent implements OnInit {
     };
 
     filterOrders() {
-        if (this.orderFilter == orderStatus.All) {
+        if (parseInt(this.orderFilter) == orderStatus.All) {
             this.ordersList = this.ordersListCopy;
         } else {
-            this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == this.orderFilter);
+            this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == parseInt(this.orderFilter));
         }
     };
 

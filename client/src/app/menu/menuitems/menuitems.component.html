@@ -41,9 +41,21 @@
             </li>
         </ul>
     </div>
-    <div class="modal-body" *ngIf="selectedToppings.length < numberOfToppings">
+    <div class="modal-body">
+        <ul class="list-unstyled">
+            <li class="modal-header">
+                <div class="col-md-12 col-sm-12" *ngIf="selectedToppings.length >= numberOfToppings">
+                    <h5>Now every topping will cost you.</h5>
+                </div>
+            </li>
+        </ul>
         <ul *ngIf="toppingsList.length" class="list-unstyled">
-            <li *ngFor="let item of toppingsList" class="mouse-hover modal-header" (click)="addTopping(item)">Topping: {{item.ItemTitle}}</li>
+            <li *ngFor="let item of toppingsList" class="mouse-hover modal-header" (click)="addTopping(item)">
+                Topping: {{item.ItemTitle}}
+                <div class="pull-right" *ngIf="selectedToppings.length >= numberOfToppings">
+                    {{ item.ItemPrice | currency:'USD':true}}
+                </div>
+            </li>
         </ul>
     </div>
     <div class="modal-footer" *ngIf="!isEditToppings">

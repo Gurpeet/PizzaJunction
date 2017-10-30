@@ -34,6 +34,11 @@
                 <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
                 <span>  All</span>
             </label>
+            <label class="btn">
+                <input type="radio" name='radOrderType' [(ngModel)]="orderFilter" value="-2" (change)="filterOrders()">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+                <span>  Today's</span>
+            </label>
         </div>
     </div>
     <div class="col-sm-12">

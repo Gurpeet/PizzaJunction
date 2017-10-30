@@ -27,9 +27,10 @@ export class OrderListComponent implements OnInit {
                 this.ordersList = this.ordersListCopy = response.GetOrders;
             });
     };
-    
+
     acceptOrder(order: Order) {
         order.OrderStatusId = orderStatus.InProcess;
+        // TODO: Print reciept, deduct payment from payment details
         this.updateOrder(order);
     };
 
@@ -54,10 +55,12 @@ export class OrderListComponent implements OnInit {
     filterOrders() {
         if (parseInt(this.orderFilter) == orderStatus.All) {
             this.ordersList = this.ordersListCopy;
+        } else if (parseInt(this.orderFilter) == orderStatus.Today) {
+            this.ordersList = this.ordersListCopy.filter(i => new Date(i.OrderDate).toDateString() == new Date().toDateString());
         } else {
             this.ordersList = this.ordersListCopy.filter(i => i.OrderStatusId == parseInt(this.orderFilter));
         }
     };
 
-    
+
 }

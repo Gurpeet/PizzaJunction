@@ -11,7 +11,7 @@ export const defaultState = 'British Columbia';
 export const defaultCountry = 'Canada';
 export const orderType = { 'Delivery': 1, 'Pickup': 2 };
 export const paymentMode = { 'PayNow': 1, 'PayInStore': 2, 'CashOnDelivery': 3 };
-export const orderStatus = { 'InProcess': 1, 'Complete': 2, 'Received': 3, 'Rejected': 4, 'All': -1 };
+export const orderStatus = { 'InProcess': 1, 'Complete': 2, 'Received': 3, 'Rejected': 4, 'All': -1, 'Today': -2 };
 export const minOrderAmount = 15;
 export const discountPercent = 0;     // discout will be in percent
 
